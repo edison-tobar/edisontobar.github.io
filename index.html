@@ -3,42 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edison Tobar | Perfil Profesional</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Edison Tobar | Portafolio Profesional</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* --------------------------------------------------------
+       ESTILOS BASE
+    --------------------------------------------------------- */
     :root {
       --verde: #00a86b;
       --verde-oscuro: #00784f;
-      --fondo-claro: #f4f6f5;
+      --fondo: #f4f6f5;
       --texto: #222;
-      --sombra: rgba(0, 0, 0, 0.08);
+      --caja: #ffffff;
     }
 
+    /* Modo oscuro automático */
     @media (prefers-color-scheme: dark) {
       :root {
-        --fondo-claro: #0f1112;
+        --fondo: #0f1112;
         --texto: #f4f4f4;
-        --sombra: rgba(255, 255, 255, 0.08);
+        --caja: #1b1d1f;
       }
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--fondo-claro);
+      font-family: "Inter", sans-serif;
+      background: var(--fondo);
       color: var(--texto);
       margin: 0;
       padding: 0;
-      transition: background 0.5s, color 0.5s;
+      transition: background 0.4s, color 0.4s;
+      scroll-behavior: smooth;
     }
 
+    /* --------------------------------------------------------
+       SPLASH SCREEN
+    --------------------------------------------------------- */
+    #splash {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--verde);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeOut 1.5s ease-out forwards;
+      animation-delay: 2.2s;
+    }
+
+    #splash h1 {
+      font-size: 2.2em;
+      margin: 0;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    #splash p {
+      animation: fadeIn 1.8s ease-in-out;
+      opacity: 0.9;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --------------------------------------------------------
+       NAVBAR
+    --------------------------------------------------------- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--caja);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 12px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 9000;
+      transition: background 0.4s;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--texto);
+      font-weight: 600;
+    }
+
+    /* --------------------------------------------------------
+       HEADER
+    --------------------------------------------------------- */
     header {
       text-align: center;
-      padding: 60px 20px 40px;
+      padding: 120px 20px 40px;
       background: linear-gradient(135deg, var(--verde-oscuro), var(--verde));
       color: white;
-      position: relative;
-      overflow: hidden;
+      margin-top: 50px;
     }
 
     header img {
@@ -46,43 +116,36 @@
       height: 140px;
       border-radius: 50%;
       border: 4px solid white;
-      margin-bottom: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      animation: fadeIn 1s ease-out;
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
     }
 
     header h1 {
-      margin: 10px 0 5px;
+      margin-top: 15px;
       font-size: 2.4em;
-      font-weight: 600;
-      animation: fadeIn 1.2s ease-out;
     }
 
-    header p {
-      font-size: 1.1em;
-      opacity: 0.9;
-      animation: fadeIn 1.5s ease-out;
-    }
-
+    /* --------------------------------------------------------
+       CONTENIDO PRINCIPAL
+    --------------------------------------------------------- */
     main {
       max-width: 950px;
       margin: 40px auto;
-      background: white;
+      background: var(--caja);
       border-radius: 12px;
       padding: 45px;
-      box-shadow: 0 6px 20px var(--sombra);
-      transition: background 0.5s, color 0.5s;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      main {
-        background: #1b1d1f;
-      }
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: background 0.4s;
     }
 
     section {
       margin-bottom: 45px;
-      animation: fadeUp 1s ease-out;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h2 {
@@ -96,7 +159,6 @@
     ul {
       list-style: none;
       padding-left: 0;
-      margin: 0;
     }
 
     ul li {
@@ -110,107 +172,115 @@
       color: var(--verde);
       position: absolute;
       left: 0;
-      font-weight: bold;
+      font-size: 20px;
+      top: -2px;
     }
 
-    a.button {
-      display: inline-block;
+    /* Botón */
+    .button {
       background: var(--verde);
       color: white;
       padding: 12px 22px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
-      transition: background 0.3s, transform 0.2s;
+      display: inline-block;
+      margin-top: 10px;
     }
 
-    a.button:hover {
+    .button:hover {
       background: var(--verde-oscuro);
-      transform: scale(1.05);
     }
 
+    /* --------------------------------------------------------
+       FOOTER
+    --------------------------------------------------------- */
     footer {
       text-align: center;
       padding: 25px;
-      color: #777;
       font-size: 0.9em;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 600px) {
-      main { padding: 25px; }
-      header h1 { font-size: 1.8em; }
+      color: #777;
     }
   </style>
 </head>
+
 <body>
+
+  <!-- SPLASH SCREEN -->
+  <div id="splash">
+    <h1>Edison Tobar</h1>
+    <p>Ciberseguridad · Automatización · Tecnología</p>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#perfil">Perfil</a>
+    <a href="#formacion">Formación</a>
+    <a href="#certificaciones">Certificaciones</a>
+    <a href="#habilidades">Habilidades</a>
+    <a href="#experiencia">Experiencia</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <!-- ENCABEZADO -->
   <header>
-    <img src="foto_edison_tobar.png" alt="Foto profesional de Edison Tobar">
+    <img src="foto_edison_tobar.png" alt="Foto Edison Tobar" />
     <h1>Edison Javier Tobar Roblero</h1>
     <p>Especialista en Ciberseguridad, Automatización y Tecnología</p>
   </header>
 
+  <!-- CONTENIDO -->
   <main>
-    <section>
+
+    <section id="perfil">
       <h2>Perfil Profesional</h2>
       <p>
-        Profesional con amplia experiencia en tecnología, especializado en ciberseguridad, automatización de procesos
-        y desarrollo de soluciones tecnológicas eficientes. Experto en Power Platform, análisis de datos y seguridad informática.
-        Enfocado en la innovación digital, la mejora continua y la protección de la información bajo los principios de integridad y excelencia.
+        Profesional especializado en ciberseguridad, automatización de procesos y plataformas tecnológicas.
+        Experiencia en Power Platform, análisis de datos, infraestructura IT, telefonía IP, herramientas de hacking ético
+        y gestión de servidores. Enfocado en proteger activos digitales y optimizar entornos corporativos mediante soluciones seguras y eficientes.
       </p>
     </section>
 
-    <section>
+    <section id="formacion">
       <h2>Formación Académica</h2>
       <ul>
-        <li>🎓 Maestría en Ciberseguridad — U. Hemisferios - IMF</li>
-        <li>🎓 Ingeniero en Informática y Ciencias de la Computación — UTE</li>
-        <li>🎓 Tecnólogo en Análisis de Sistemas Informáticos — EPN</li>
+        <li>Maestría en Ciberseguridad — U. Hemisferios - IMF</li>
+        <li>Ingeniería en Informática y Ciencias de la Computación — UTE</li>
+        <li>Tecnólogo en Análisis de Sistemas — EPN</li>
       </ul>
     </section>
 
-    <section>
+    <section id="certificaciones">
       <h2>Certificaciones Destacadas</h2>
       <ul>
-        <li>Ethical Hacking Certified Associate (EHCA)</li>
-        <li>Cybersecurity Awareness Professional Certification (CAPC)</li>
-        <li>Ethical Hacking Professional Certification (CEHPC)</li>
-        <li>Power Platform Functional Consultant — AKROSS</li>
-        <li>Bootcamp Customer Experience — ADEN</li>
+        <li>EHCA — Ethical Hacking Certified Associate</li>
+        <li>CAPC — Cybersecurity Awareness Professional Certification</li>
+        <li>CEHPC — Ethical Hacking Professional Certification</li>
+        <li>Power Platform Consultant — AKROSS</li>
+        <li>IA Aplicada a la Docencia — UDLA</li>
       </ul>
     </section>
 
-    <section>
+    <section id="habilidades">
       <h2>Habilidades Técnicas</h2>
       <ul>
         <li>Power Apps, Power Automate, Power BI</li>
         <li>Lenguajes: C++, Visual Basic</li>
-        <li>Bases de datos: SQL Server, Oracle, DB2</li>
-        <li>Herramientas de ciberseguridad: Metasploit, Nessus, Nmap, Hydra, Sqlmap</li>
-        <li>Administración de servidores Windows y Linux</li>
+        <li>Bases de Datos: Oracle, SQL Server, DB2</li>
+        <li>Seguridad: Metasploit, Nmap, Nessus, Hydra, Sqlmap</li>
+        <li>Servidores Windows / Linux</li>
       </ul>
     </section>
 
-    <section>
+    <section id="experiencia">
       <h2>Experiencia Profesional</h2>
       <ul>
-        <li><strong>Información Tecnológica del Ecuador</strong> — 6 años<br>
-          Administración de servidores, soporte técnico, telefonía IP, ERP y capacitación en sistemas internos.</li>
-        <li><strong>Servicios Cybercell</strong> — 2.5 años<br>
-          Análisis de sistemas, redes, seguridad informática, soporte HelpDesk y administración de bases de datos.</li>
+        <li><strong>Información Tecnológica del Ecuador</strong> (6 años) — Administración de servidores, telefonía IP, ERP, soporte técnico y capacitación.</li>
+        <li><strong>Servicios Cybercell</strong> (2.5 años) — Redes, seguridad informática, soporte, y administración de bases de datos.</li>
       </ul>
     </section>
 
-    <section>
+    <section id="contacto">
       <h2>Contacto</h2>
       <p>
         📧 <a href="mailto:etobarroblero@gmail.com">etobarroblero@gmail.com</a><br>
@@ -219,10 +289,12 @@
         📄 <a href="CV_Edison_Tobar_2025.pdf" class="button" target="_blank">Descargar CV</a>
       </p>
     </section>
+
   </main>
 
   <footer>
-    © 2025 Edison Tobar — Todos los derechos reservados
+    © 2025 Edison Tobar — Portafolio Profesional
   </footer>
+
 </body>
 </html>
