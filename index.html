@@ -201,6 +201,52 @@
       font-size: 0.9em;
       color: #777;
     }
+    /* -----------------------------------------
+   PORTAFOLIO / PROYECTOS
+------------------------------------------ */
+.portfolio-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.portfolio-card {
+  background: var(--caja);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 6px solid var(--verde);
+}
+
+.portfolio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.portfolio-card h3 {
+  margin-top: 0;
+  color: var(--verde-oscuro);
+  font-size: 1.2em;
+}
+
+.portfolio-card p {
+  font-size: 0.95em;
+  color: var(--texto);
+}
+
+.badge {
+  display: inline-block;
+  background: var(--verde);
+  color: white;
+  font-size: 0.75em;
+  padding: 4px 10px;
+  margin-top: 8px;
+  border-radius: 6px;
+  margin-right: 5px;
+}
+
   </style>
 </head>
 
