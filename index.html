@@ -1,378 +1,363 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edison Tobar | Portafolio Profesional</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edison Tobar — Portafolio Profesional</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* --------------------------------------------------------
-       VARIABLES Y ESTILOS BASE
-    --------------------------------------------------------- */
-    :root {
+    :root{
       --verde: #00a86b;
       --verde-oscuro: #00784f;
-      --fondo: #f4f6f5;
-      --texto: #222;
-      --caja: #ffffff;
+      --bg: #f4f6f5;
+      --card: #ffffff;
+      --text: #222;
+      --muted: #666;
+      --nav-height: 56px;
+    }
+    /* Dark variables */
+    .dark {
+      --bg: #0f1112;
+      --card: #101215;
+      --text: #e9eef0;
+      --muted: #a3a9ad;
     }
 
-    /* Modo oscuro automático */
+    /* Respect system preference */
     @media (prefers-color-scheme: dark) {
-      :root {
-        --fondo: #0f1112;
-        --texto: #f4f4f4;
-        --caja: #1b1d1f;
-      }
+      :root { --bg: #0f1112; --card: #1b1d1f; --text: #f4f4f4; --muted: #a3a9ad; }
     }
 
-    body {
-      font-family: "Inter", sans-serif;
-      background: var(--fondo);
-      color: var(--texto);
-      margin: 0;
-      padding: 0;
-      transition: background 0.4s, color 0.4s;
-      scroll-behavior: smooth;
+    *{box-sizing: border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
     }
 
-    /* --------------------------------------------------------
-       SPLASH SCREEN (Corregido)
-    --------------------------------------------------------- */
-    #splash {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--verde);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.8s ease;
+    /* NAV */
+    .nav {
+      position:fixed;
+      top:0; left:0; right:0;
+      height:var(--nav-height);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:6px 18px;
+      background: rgba( var(--card-rgb, 255,255,255) , 0.96);
+      backdrop-filter: blur(6px);
+      z-index:999;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
     }
+    /* fallback for color in CSS variable */
+    /* compute card rgb for light/dark: */
+    :root { --card-rgb: 255,255,255 }
+    .dark { --card-rgb: 16,18,21 }
 
-    #splash h1 {
-      font-size: 2.2em;
-      margin: 0;
-    }
+    .nav .brand { display:flex; align-items:center; gap:10px; font-weight:700; color:var(--text); text-decoration:none }
+    .nav .brand img{ width:36px; height:36px; border-radius:8px; object-fit:cover; border:2px solid rgba(255,255,255,0.05) }
 
-    #splash p {
-      opacity: 0.9;
-    }
+    .nav .links { display:flex; gap:14px; align-items:center }
+    .nav a.link { text-decoration:none; color:var(--text); font-weight:600; font-size:0.95rem; padding:8px 10px; border-radius:8px }
+    .nav a.link:hover { background: rgba(0,0,0,0.04) }
 
-    /* --------------------------------------------------------
-       NAVBAR
-    --------------------------------------------------------- */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: var(--caja);
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 12px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      z-index: 9000;
-      transition: background 0.4s;
-    }
+    .controls { display:flex; gap:10px; align-items:center }
+    .btn { background:var(--verde); color:white; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:600 }
+    .icon-btn { background:transparent; border:0; cursor:pointer; padding:8px; border-radius:8px }
 
-    nav a {
-      text-decoration: none;
-      color: var(--texto);
-      font-weight: 600;
-    }
+    /* Hamburger */
+    .hamburger { display:none; background:transparent; border:0; cursor:pointer; }
+    .hamburger .bar { width:22px; height:2px; background:var(--text); margin:4px 0; transition: all .2s }
 
-    /* --------------------------------------------------------
-       HEADER
-    --------------------------------------------------------- */
-    header {
-      text-align: center;
-      padding: 120px 20px 40px;
+    /* HEADER */
+    header{
+      padding: calc(var(--nav-height) + 36px) 18px 28px;
+      text-align:center;
       background: linear-gradient(135deg, var(--verde-oscuro), var(--verde));
-      color: white;
-      margin-top: 50px;
+      color:white;
+    }
+    header .foto{ width:130px; height:130px; border-radius:50%; border:4px solid rgba(255,255,255,0.9); object-fit:cover; display:inline-block; box-shadow:0 10px 30px rgba(0,0,0,0.18) }
+    header h1{ margin:12px 0 6px; font-size:1.9rem }
+    header p{ margin:0; opacity:0.95 }
+
+    /* MAIN CARD */
+    main{ max-width:1000px; margin:30px auto; padding:12px 18px 80px }
+    .card{ background:var(--card); border-radius:12px; padding:28px; box-shadow: 0 10px 30px rgba(2,6,23,0.06); margin-bottom:22px; transition: transform .18s, box-shadow .18s }
+    .card h2{ margin-top:0; color:var(--verde-oscuro) }
+    .muted{ color:var(--muted) }
+
+    /* Grid for skills/experience */
+    .grid-2{ display:grid; grid-template-columns:1fr 320px; gap:20px }
+    @media (max-width:880px){ .grid-2{ grid-template-columns:1fr; } }
+
+    /* Portfolio grid */
+    .portfolio-container{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:18px; margin-top:14px }
+    .portfolio-card{ border-radius:10px; padding:16px; background: linear-gradient(180deg, rgba(0,0,0,0.02), transparent); border-left:6px solid var(--verde); transition:transform .28s, box-shadow .28s; min-height:130px }
+    .portfolio-card h3{ margin:0 0 8px; font-size:1.05rem; color:var(--verde-oscuro) }
+    .portfolio-card p{ margin:0; color:var(--muted); font-size:0.95rem }
+    .portfolio-card .badges{ margin-top:10px }
+    .badge{ display:inline-block; padding:6px 8px; border-radius:8px; background:var(--verde); color:white; font-size:0.78rem; margin-right:8px }
+
+    .portfolio-card:hover{ transform: translateY(-8px); box-shadow: 0 18px 40px rgba(2,6,23,0.12) }
+
+    /* Footer */
+    footer{ text-align:center; padding:30px 0; color:var(--muted) }
+
+    /* Responsive - mobile nav */
+    @media (max-width:720px){
+      .nav .links{ display:none }
+      .hamburger{ display:block }
+      .controls .btn{ display:none }
     }
 
-    header img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      border: 4px solid white;
-      box-shadow: 0 0 12px rgba(0,0,0,0.3);
-      object-fit: cover;
-    }
+    /* small tweaks */
+    a{ color:inherit }
+    .small{ font-size:0.9rem }
 
-    header h1 {
-      margin-top: 15px;
-      font-size: 2.4em;
-    }
-
-    /* --------------------------------------------------------
-       CONTENIDO PRINCIPAL
-    --------------------------------------------------------- */
-    main {
-      max-width: 950px;
-      margin: 40px auto;
-      background: var(--caja);
-      border-radius: 12px;
-      padding: 45px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      transition: background 0.4s;
-    }
-
-    section {
-      margin-bottom: 45px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1s forwards;
-    }
-
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h2 {
-      color: var(--verde-oscuro);
-      border-left: 6px solid var(--verde);
-      padding-left: 12px;
-      margin-bottom: 15px;
-      font-size: 1.4em;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    ul li {
-      padding-left: 20px;
-      position: relative;
-      margin-bottom: 10px;
-    }
-
-    ul li::before {
-      content: "•";
-      color: var(--verde);
-      position: absolute;
-      left: 0;
-      font-size: 20px;
-      top: -2px;
-    }
-
-    /* Botón */
-    .button {
-      background: var(--verde);
-      color: white;
-      padding: 12px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-block;
-      margin-top: 10px;
-    }
-
-    .button:hover {
-      background: var(--verde-oscuro);
-    }
-
-    /* --------------------------------------------------------
-       PORTAFOLIO
-    --------------------------------------------------------- */
-    .portfolio-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-      margin-top: 20px;
-    }
-
-    .portfolio-card {
-      background: var(--caja);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-left: 6px solid var(--verde);
-    }
-
-    .portfolio-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-
-    .portfolio-card h3 {
-      color: var(--verde-oscuro);
-      margin-top: 0;
-      font-size: 1.2em;
-    }
-
-    .badge {
-      display: inline-block;
-      background: var(--verde);
-      color: white;
-      font-size: 0.75em;
-      padding: 4px 10px;
-      margin-top: 8px;
-      border-radius: 6px;
-      margin-right: 5px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      font-size: 0.9em;
-      color: #777;
-    }
+    /* Focus outlines (accessibility) */
+    a:focus, button:focus { outline:3px solid rgba(0,168,107,0.18); outline-offset:2px; border-radius:8px }
   </style>
 </head>
-
 <body>
 
-  <!-- SPLASH -->
-  <div id="splash">
-    <h1>Edison Tobar</h1>
-    <p>Ciberseguridad · Automatización · Tecnología</p>
+  <!-- NAV -->
+  <div class="nav" role="navigation" aria-label="Principal">
+    <a class="brand" href="#home">
+      <img src="foto_edison_tobar.png" alt="Foto Edison">
+      <span>Edison Tobar</span>
+    </a>
+
+    <div class="links" id="navLinks">
+      <a class="link" href="#perfil">Perfil</a>
+      <a class="link" href="#formacion">Formación</a>
+      <a class="link" href="#certificaciones">Certificaciones</a>
+      <a class="link" href="#habilidades">Habilidades</a>
+      <a class="link" href="#experiencia">Experiencia</a>
+      <a class="link" href="#portafolio">Portafolio</a>
+      <a class="link" href="#contacto">Contacto</a>
+    </div>
+
+    <div class="controls">
+      <button id="darkToggle" class="icon-btn" title="Alternar modo oscuro" aria-pressed="false">🌓</button>
+      <a class="btn" href="CV_Edison_Tobar_2025.pdf" target="_blank" rel="noopener">Descargar CV</a>
+
+      <button class="hamburger" id="hamb" aria-label="Abrir menú">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
   </div>
 
-  <!-- NAVBAR -->
-  <nav>
-    <a href="#perfil">Perfil</a>
-    <a href="#formacion">Formación</a>
-    <a href="#certificaciones">Certificaciones</a>
-    <a href="#habilidades">Habilidades</a>
-    <a href="#experiencia">Experiencia</a>
-    <a href="#portafolio">Portafolio</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
-
   <!-- HEADER -->
-  <header>
-    <img src="foto_edison_tobar.png" alt="Foto de Edison Tobar">
+  <header id="home" role="banner">
+    <img class="foto" src="foto_edison_tobar.png" alt="Foto Edison Tobar" />
     <h1>Edison Javier Tobar Roblero</h1>
-    <p>Msc. Ciberseguridad | EHCA | CEHPC | PMJ | Ingeniero en Soporte</p>
+    <p class="small">MSc. Ciberseguridad · EHCA · CEHPC · PMJ · Especialista en Automatización</p>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main>
-
-    <section id="perfil">
-      <h2>Perfil Profesional</h2>
-      <p>
-        Profesional especializado en ciberseguridad, automatización y plataformas tecnológicas. Experiencia en Power Platform,
-        análisis de datos, infraestructura IT, telefonía IP, herramientas de hacking ético y gestión de servidores.
-        Enfocado en proteger activos digitales y optimizar entornos corporativos mediante soluciones seguras y eficientes.
-      </p>
+    <!-- Perfil -->
+    <section id="perfil" class="card" aria-labelledby="perfil-title">
+      <h2 id="perfil-title">Perfil Profesional</h2>
+      <p class="small">Profesional con experiencia en ciberseguridad, automatización de procesos y desarrollo de soluciones empresariales. Implementación de controles bajo ISO 27001, soluciones Power Platform y análisis de datos para la toma de decisiones.</p>
     </section>
 
-    <section id="formacion">
-      <h2>Formación Académica</h2>
-      <ul>
-        <li>Maestría en Ciberseguridad — U. Hemisferios - IMF</li>
-        <li>Ingeniería en Informática — UTE</li>
-        <li>Tecnólogo en Análisis de Sistemas — EPN</li>
-      </ul>
+    <!-- Formación + Contacto lateral -->
+    <section class="card grid-2" aria-labelledby="formacion-title">
+      <div>
+        <h2 id="formacion-title">Formación Académica</h2>
+        <ul class="small">
+          <li>Maestría en Ciberseguridad — U. Hemisferios - IMF</li>
+          <li>Ingeniería en Informática — UTE</li>
+          <li>Tecnólogo en Análisis de Sistemas — EPN</li>
+        </ul>
+        <h3 style="margin-top:18px">Certificaciones</h3>
+        <ul class="small">
+          <li>EHCA — Ethical Hacking Certified Associate</li>
+          <li>CEHPC — Ethical Hacking Professional Certification</li>
+          <li>CAPC — Cybersecurity Awareness Professional</li>
+          <li>Power Platform Consultant — AKROSS</li>
+        </ul>
+      </div>
+
+      <aside style="padding-left:18px">
+        <h2>Contacto</h2>
+        <p class="small">📧 <a href="mailto:etobarroblero@gmail.com">etobarroblero@gmail.com</a><br>📱 0999592340<br>🔗 <a href="https://www.linkedin.com/in/edisontobar" target="_blank" rel="noopener">LinkedIn /edisontobar</a></p>
+        <div style="margin-top:12px"><a class="btn" href="CV_Edison_Tobar_2025.pdf" target="_blank" rel="noopener">Descargar CV</a></div>
+      </aside>
     </section>
 
-    <section id="certificaciones">
-      <h2>Certificaciones Destacadas</h2>
-      <ul>
-        <li>EHCA — Ethical Hacking Certified Associate</li>
-        <li>CAPC — Cybersecurity Awareness Professional Certification</li>
-        <li>CEHPC — Ethical Hacking Professional Certification</li>
-        <li>Power Platform Consultant — AKROSS</li>
-        <li>IA Aplicada a la Docencia — UDLA</li>
-      </ul>
-    </section>
-
-    <section id="habilidades">
+    <!-- Habilidades -->
+    <section id="habilidades" class="card">
       <h2>Habilidades Técnicas</h2>
-      <ul>
-        <li>Power Apps, Power Automate, Power BI</li>
-        <li>Lenguajes: Python, C++, Visual Basic</li>
-        <li>Bases de Datos: Oracle, SQL Server, DB2</li>
-        <li>Herramientas: Metasploit, Nmap, Nessus, Hydra, Sqlmap</li>
-        <li>Servidores Windows / Linux</li>
-      </ul>
-    </section>
-
-    <section id="experiencia">
-      <h2>Experiencia Profesional</h2>
-      <ul>
-        <li><strong>Información Tecnológica del Ecuador</strong> (6 años) — Gestión de servidores, telefonía IP, ERP, soporte técnico, automatización y capacitación.</li>
-        <li><strong>Servicios Cybercell</strong> (2.5 años) — Redes, seguridad informática, soporte, bases de datos y administración de infraestructura.</li>
-      </ul>
-    </section>
-
-    <!-- PORTAFOLIO -->
-    <section id="portafolio">
-      <h2>Portafolio de Proyectos</h2>
-      <p>Aquí encontrarás proyectos destacados que reflejan mi experiencia en soluciones empresariales.</p>
-
-      <div class="portfolio-container">
-
-        <div class="portfolio-card">
-          <h3>🔐 Sistema de Tickets</h3>
-          <p>Desarrollo e implementación de un sistema corporativo de tickets basado en Power Platform.</p>
-          <span class="badge">ISO 27001</span>
-          <span class="badge">Ciberseguridad</span>
+      <div style="display:flex; gap:16px; flex-wrap:wrap">
+        <div style="flex:1; min-width:200px">
+          <h4 class="small">Plataformas</h4>
+          <p class="small">Power Apps, Power Automate, Power BI</p>
         </div>
-
-        <div class="portfolio-card">
-          <h3>⚡ Automatización Empresarial</h3>
-          <p>Automatización de procesos críticos con Power Apps, Power Automate y análisis con Power BI.</p>
-          <span class="badge">Power Apps</span>
-          <span class="badge">Automatización</span>
+        <div style="flex:1; min-width:200px">
+          <h4 class="small">Lenguajes / DB</h4>
+          <p class="small">Python, C++, Visual Basic — Oracle, SQL Server, DB2</p>
         </div>
-
-        <div class="portfolio-card">
-          <h3>🛡 Cableado estructurado</h3>
-          <p>Coordinación e implementación de cableado estructurado para plantas de producción.</p>
-          <span class="badge">Infraestructura</span>
-          <span class="badge">Corporativo</span>
+        <div style="flex:1; min-width:200px">
+          <h4 class="small">Seguridad</h4>
+          <p class="small">Metasploit, Nmap, Nessus, Hydra, Sqlmap, pentesting</p>
         </div>
-
-        <div class="portfolio-card">
-          <h3>📊 Flujos con firmas electrónicas</h3>
-          <p>Diseño e implementación de flujos internos bajo normativa ecuatoriana.</p>
-          <span class="badge">SQL</span>
-          <span class="badge">Oracle</span>
-        </div>
-
       </div>
     </section>
 
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p>
-        📧 <a href="mailto:etobarroblero@gmail.com">etobarroblero@gmail.com</a><br>
-        📱 0999592340<br>
-        🔗 <a href="https://www.linkedin.com/in/edisontobar" target="_blank">LinkedIn /edisontobar</a><br><br>
-        📄 <a href="CV_Edison_Tobar_2025.pdf" class="button" target="_blank">Descargar CV</a>
-      </p>
+    <!-- Experiencia -->
+    <section id="experiencia" class="card">
+      <h2>Experiencia Profesional</h2>
+      <ul class="small">
+        <li><strong>Información Tecnológica del Ecuador</strong> — 6 años. Administración de servidores, telefonía IP, ERP, soporte y automatización.</li>
+        <li><strong>Servicios Cybercell</strong> — 2.5 años. Redes, seguridad informática, soporte y administración de bases de datos.</li>
+      </ul>
+    </section>
+
+    <!-- Portafolio -->
+    <section id="portafolio" class="card" aria-labelledby="portafolio-title">
+      <h2 id="portafolio-title">Portafolio de Proyectos</h2>
+      <p class="small muted">Proyectos representativos en ciberseguridad, automatización y optimización de procesos.</p>
+
+      <div class="portfolio-container" id="portfolioGrid">
+        <!-- Card 1 -->
+        <a class="portfolio-card" href="project-1.html" aria-label="Proyecto Sistema de Tickets — ver detalles">
+          <h3>🔐 Sistema de Tickets</h3>
+          <p>Desarrollo e implementación de sistema corporativo de tickets basado en Power Platform para gestión de incidencias y auditoría.</p>
+          <div class="badges">
+            <span class="badge">Power Apps</span><span class="badge">ISO 27001</span>
+          </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a class="portfolio-card" href="project-2.html" aria-label="Proyecto Automatización — ver detalles">
+          <h3>⚡ Automatización Empresarial</h3>
+          <p>Automatización de procesos críticos con Power Automate + Power BI para reporting y reducción de tiempos.</p>
+          <div class="badges"><span class="badge">Power Automate</span><span class="badge">Power BI</span></div>
+        </a>
+
+        <!-- Card 3 -->
+        <a class="portfolio-card" href="project-3.html" aria-label="Proyecto Cableado estructurado — ver detalles">
+          <h3>🛡 Cableado estructurado</h3>
+          <p>Coordinación e implementación de cableado estructurado en planta de producción, asegurando continuidad y redundancia.</p>
+          <div class="badges"><span class="badge">Infraestructura</span></div>
+        </a>
+
+        <!-- Card 4 -->
+        <a class="portfolio-card" href="project-4.html" aria-label="Proyecto Flujos con firmas electrónicas — ver detalles">
+          <h3>📊 Flujos con firmas electrónicas</h3>
+          <p>Implementación de flujos internos con firmas electrónicas y control documental bajo estándares nacionales.</p>
+          <div class="badges"><span class="badge">SQL</span><span class="badge">Oracle</span></div>
+        </a>
+      </div>
+
     </section>
 
   </main>
 
   <footer>
-    © 2025 Edison Tobar — Portafolio Profesional
+    © 2025 Edison Javier Tobar Roblero — Portafolio Profesional
   </footer>
 
-  <!-- SCRIPT PARA CORREGIR SPLASH -->
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    // ----- Dark mode toggle -----
+    const darkToggle = document.getElementById('darkToggle');
+    const html = document.documentElement;
+
+    // Load stored preference
+    const stored = localStorage.getItem('site-theme');
+    if(stored === 'dark'){ html.classList.add('dark'); darkToggle.setAttribute('aria-pressed','true') }
+
+    darkToggle.addEventListener('click', () => {
+      const isDark = html.classList.toggle('dark');
+      darkToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+      localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
+    });
+
+    // ----- Mobile menu -----
+    const hamb = document.getElementById('hamb');
+    const navLinks = document.getElementById('navLinks');
+    hamb && hamb.addEventListener('click', () => {
+      const shown = navLinks.style.display === 'flex';
+      navLinks.style.display = shown ? '' : 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = shown ? '' : 'absolute';
+      navLinks.style.top = shown ? '' : '56px';
+      navLinks.style.right = shown ? '' : '14px';
+      navLinks.style.background = shown ? '' : 'var(--card)';
+      navLinks.style.padding = shown ? '' : '10px';
+      navLinks.style.borderRadius = shown ? '' : '8px';
+      navLinks.style.boxShadow = shown ? '' : '0 10px 30px rgba(2,6,23,0.12)';
+    });
+
+    // ----- Splash hide (reliable) -----
+    document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
-        const splash = document.getElementById("splash");
-        splash.style.opacity = "0";
-        setTimeout(() => splash.style.display = "none", 800);
-      }, 2500);
+        const s = document.getElementById('splash');
+        if(!s) return;
+        s.style.opacity = 0;
+        s.style.pointerEvents = 'none';
+        setTimeout(()=> s.remove(), 900);
+      }, 900);
+    });
+
+    // ----- GSAP Animations -----
+    function animateEntry(){
+      // header
+      gsap.from("header .foto", { y:-40, opacity:0, duration:0.9, ease:"power3.out" });
+      gsap.from("header h1", { y:10, opacity:0, duration:0.9, delay:0.15, ease:"power3.out" });
+      gsap.from("header p", { y:10, opacity:0, duration:0.9, delay:0.25, ease:"power3.out" });
+
+      // cards fade in sequentially
+      gsap.utils.toArray('main .card').forEach((el, i) => {
+        gsap.from(el, { y:18, opacity:0, duration:0.8, delay:0.35 + i*0.12, ease:"power3.out" });
+      });
+
+      // portfolio items pop
+      gsap.utils.toArray('.portfolio-card').forEach((el, i) => {
+        gsap.from(el, { y:14, opacity:0, scale:0.98, duration:0.7, delay:1.0 + i*0.08, ease:"back.out(0.4)" });
+      });
+    }
+
+    // Intersection-based subtle reveal on scroll (for future items)
+    function setupRevealOnScroll(){
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            gsap.to(entry.target, { y:0, opacity:1, duration:0.6, ease:"power3.out" });
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.portfolio-card, .card').forEach(el => {
+        if(window.innerWidth < 880) { // mobile: ensure visible
+          el.style.opacity = 1;
+          el.style.transform = 'none';
+        } else {
+          el.style.opacity = 0; el.style.transform = 'translateY(18px)';
+          obs.observe(el);
+        }
+      });
+    }
+
+    // Start animations after load
+    window.addEventListener('load', () => {
+      animateEntry();
+      setupRevealOnScroll();
     });
   </script>
-
 </body>
 </html>
