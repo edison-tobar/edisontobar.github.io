@@ -10,7 +10,7 @@
 
   <style>
     /* --------------------------------------------------------
-       ESTILOS BASE
+       VARIABLES Y ESTILOS BASE
     --------------------------------------------------------- */
     :root {
       --verde: #00a86b;
@@ -40,12 +40,13 @@
     }
 
     /* --------------------------------------------------------
-       SPLASH SCREEN
+       SPLASH SCREEN (Corregido)
     --------------------------------------------------------- */
     #splash {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       background: var(--verde);
       color: white;
       display: flex;
@@ -53,28 +54,16 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      animation: fadeOut 1.5s ease-out forwards;
-      animation-delay: 2.2s;
+      transition: opacity 0.8s ease;
     }
 
     #splash h1 {
       font-size: 2.2em;
       margin: 0;
-      animation: fadeIn 1.2s ease-in-out;
     }
 
     #splash p {
-      animation: fadeIn 1.8s ease-in-out;
       opacity: 0.9;
-    }
-
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     /* --------------------------------------------------------
@@ -117,6 +106,7 @@
       border-radius: 50%;
       border: 4px solid white;
       box-shadow: 0 0 12px rgba(0,0,0,0.3);
+      object-fit: cover;
     }
 
     header h1 {
@@ -193,66 +183,58 @@
     }
 
     /* --------------------------------------------------------
-       FOOTER
+       PORTAFOLIO
     --------------------------------------------------------- */
+    .portfolio-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .portfolio-card {
+      background: var(--caja);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 6px solid var(--verde);
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .portfolio-card h3 {
+      color: var(--verde-oscuro);
+      margin-top: 0;
+      font-size: 1.2em;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--verde);
+      color: white;
+      font-size: 0.75em;
+      padding: 4px 10px;
+      margin-top: 8px;
+      border-radius: 6px;
+      margin-right: 5px;
+    }
+
     footer {
       text-align: center;
       padding: 25px;
       font-size: 0.9em;
       color: #777;
     }
-    /* -----------------------------------------
-   PORTAFOLIO / PROYECTOS
------------------------------------------- */
-.portfolio-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-  margin-top: 20px;
-}
-
-.portfolio-card {
-  background: var(--caja);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-left: 6px solid var(--verde);
-}
-
-.portfolio-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.portfolio-card h3 {
-  margin-top: 0;
-  color: var(--verde-oscuro);
-  font-size: 1.2em;
-}
-
-.portfolio-card p {
-  font-size: 0.95em;
-  color: var(--texto);
-}
-
-.badge {
-  display: inline-block;
-  background: var(--verde);
-  color: white;
-  font-size: 0.75em;
-  padding: 4px 10px;
-  margin-top: 8px;
-  border-radius: 6px;
-  margin-right: 5px;
-}
-
   </style>
 </head>
 
 <body>
 
-  <!-- SPLASH SCREEN -->
+  <!-- SPLASH -->
   <div id="splash">
     <h1>Edison Tobar</h1>
     <p>Ciberseguridad · Automatización · Tecnología</p>
@@ -265,25 +247,26 @@
     <a href="#certificaciones">Certificaciones</a>
     <a href="#habilidades">Habilidades</a>
     <a href="#experiencia">Experiencia</a>
+    <a href="#portafolio">Portafolio</a>
     <a href="#contacto">Contacto</a>
   </nav>
 
-  <!-- ENCABEZADO -->
+  <!-- HEADER -->
   <header>
-    <img src="foto_edison_tobar.png" alt="Foto Edison Tobar" />
+    <img src="foto_edison_tobar.png" alt="Foto de Edison Tobar">
     <h1>Edison Javier Tobar Roblero</h1>
-    <p>Msc. Ciberseguridad | EHCA | CEHPC | PMJ (Pentester Junior)| Ing. Soporte</p>
+    <p>Msc. Ciberseguridad | EHCA | CEHPC | PMJ | Ingeniero en Soporte</p>
   </header>
 
-  <!-- CONTENIDO -->
+  <!-- MAIN CONTENT -->
   <main>
 
     <section id="perfil">
       <h2>Perfil Profesional</h2>
       <p>
-        Profesional especializado en ciberseguridad, automatización de procesos y plataformas tecnológicas.
-        Experiencia en Power Platform, análisis de datos, infraestructura IT, telefonía IP, herramientas de hacking ético
-        y gestión de servidores. Enfocado en proteger activos digitales y optimizar entornos corporativos mediante soluciones seguras y eficientes.
+        Profesional especializado en ciberseguridad, automatización y plataformas tecnológicas. Experiencia en Power Platform,
+        análisis de datos, infraestructura IT, telefonía IP, herramientas de hacking ético y gestión de servidores.
+        Enfocado en proteger activos digitales y optimizar entornos corporativos mediante soluciones seguras y eficientes.
       </p>
     </section>
 
@@ -291,7 +274,7 @@
       <h2>Formación Académica</h2>
       <ul>
         <li>Maestría en Ciberseguridad — U. Hemisferios - IMF</li>
-        <li>Ingeniería en Informática y Ciencias de la Computación — UTE</li>
+        <li>Ingeniería en Informática — UTE</li>
         <li>Tecnólogo en Análisis de Sistemas — EPN</li>
       </ul>
     </section>
@@ -311,9 +294,9 @@
       <h2>Habilidades Técnicas</h2>
       <ul>
         <li>Power Apps, Power Automate, Power BI</li>
-        <li>Lenguajes: C++, Visual Basic</li>
+        <li>Lenguajes: Python, C++, Visual Basic</li>
         <li>Bases de Datos: Oracle, SQL Server, DB2</li>
-        <li>Seguridad: Metasploit, Nmap, Nessus, Hydra, Sqlmap</li>
+        <li>Herramientas: Metasploit, Nmap, Nessus, Hydra, Sqlmap</li>
         <li>Servidores Windows / Linux</li>
       </ul>
     </section>
@@ -321,57 +304,48 @@
     <section id="experiencia">
       <h2>Experiencia Profesional</h2>
       <ul>
-        <li><strong>Información Tecnológica del Ecuador</strong> (6 años) — Administración de servidores, telefonía IP, ERP, soporte técnico y capacitación.</li>
-        <li><strong>Servicios Cybercell</strong> (2.5 años) — Redes, seguridad informática, soporte, y administración de bases de datos.</li>
+        <li><strong>Información Tecnológica del Ecuador</strong> (6 años) — Gestión de servidores, telefonía IP, ERP, soporte técnico, automatización y capacitación.</li>
+        <li><strong>Servicios Cybercell</strong> (2.5 años) — Redes, seguridad informática, soporte, bases de datos y administración de infraestructura.</li>
       </ul>
     </section>
-<section id="portafolio">
-  <h2>Portafolio de Proyectos</h2>
-  <p>Aquí encontrarás algunos proyectos destacados que reflejan mi experiencia  y desarrollo de soluciones empresariales.</p>
 
-  <div class="portfolio-container">
+    <!-- PORTAFOLIO -->
+    <section id="portafolio">
+      <h2>Portafolio de Proyectos</h2>
+      <p>Aquí encontrarás proyectos destacados que reflejan mi experiencia en soluciones empresariales.</p>
 
-    <!-- PROYECTO 1 -->
-    <div class="portfolio-card">
-      <h3>🔐 Sistema de Tickets</h3>
-      <p>Desarrollo e Implementación de sistema de ticekts con power plataform como solucion corporativa en una empresa farmacéutica.</p>
-      <span class="badge">ISO 27001</span>
-      <span class="badge">Ciberseguridad</span>
-    </div>
+      <div class="portfolio-container">
 
-    <!-- PROYECTO 2 -->
-    <div class="portfolio-card">
-      <h3>⚡ Automatización de Procesos con Power Platform</h3>
-      <p>Desarrollo de apps empresariales con Power Apps, automatización de flujos críticos con Power Automate y análisis de datos con Power BI.</p>
-      <span class="badge">Power Apps</span>
-      <span class="badge">Automatización</span>
-      <span class="badge">Power BI</span>
-    </div>
+        <div class="portfolio-card">
+          <h3>🔐 Sistema de Tickets</h3>
+          <p>Desarrollo e implementación de un sistema corporativo de tickets basado en Power Platform.</p>
+          <span class="badge">ISO 27001</span>
+          <span class="badge">Ciberseguridad</span>
+        </div>
 
-    <!-- PROYECTO 3 -->
-    <div class="portfolio-card">
-      <h3>🛡 Cableado estructurado</h3>
-      <p>Coordinar y ejecutar la implementacion de cableado estructurado para la planta de produccion de una empresa farmacéutica.</p>
-      <span class="badge">Pentesting</span>
-      <span class="badge">Nmap</span>
-      <span class="badge">Nessus</span>
-    </div>
+        <div class="portfolio-card">
+          <h3>⚡ Automatización Empresarial</h3>
+          <p>Automatización de procesos críticos con Power Apps, Power Automate y análisis con Power BI.</p>
+          <span class="badge">Power Apps</span>
+          <span class="badge">Automatización</span>
+        </div>
 
-    <!-- PROYECTO 4 -->
-    <div class="portfolio-card">
-      <h3>📊 Automatizar procesos internos</h3>
-      <p>Direccion, desarrollo e implementacion de un sistema de flujos con firmas electronicas bajo estandares nacionales</p>
-      <span class="badge">SQL</span>
-      <span class="badge">Oracle</span>
-      <span class="badge">Power BI</span>
-    </div>
+        <div class="portfolio-card">
+          <h3>🛡 Cableado estructurado</h3>
+          <p>Coordinación e implementación de cableado estructurado para plantas de producción.</p>
+          <span class="badge">Infraestructura</span>
+          <span class="badge">Corporativo</span>
+        </div>
 
-  </div>
+        <div class="portfolio-card">
+          <h3>📊 Flujos con firmas electrónicas</h3>
+          <p>Diseño e implementación de flujos internos bajo normativa ecuatoriana.</p>
+          <span class="badge">SQL</span>
+          <span class="badge">Oracle</span>
+        </div>
 
-  <div style="text-align:center; margin-top: 30px;">
-    <a href="#" class="button">Ver más proyectos (próximamente)</a>
-  </div>
-</section>
+      </div>
+    </section>
 
     <section id="contacto">
       <h2>Contacto</h2>
@@ -388,6 +362,17 @@
   <footer>
     © 2025 Edison Tobar — Portafolio Profesional
   </footer>
+
+  <!-- SCRIPT PARA CORREGIR SPLASH -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        const splash = document.getElementById("splash");
+        splash.style.opacity = "0";
+        setTimeout(() => splash.style.display = "none", 800);
+      }, 2500);
+    });
+  </script>
 
 </body>
 </html>
