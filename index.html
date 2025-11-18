@@ -1,162 +1,279 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Edison Tobar — Portafolio Profesional</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ============================================
-   VARIABLES
-============================================ */
+/* ==========================================================
+   VARIABLES GLOBALES
+========================================================== */
 :root{
-  --sidebar-width: 260px;
   --verde: #00a86b;
   --verde-oscuro: #00784f;
   --bg: #f4f6f5;
   --card: #ffffff;
   --text: #1b1b1b;
   --muted: #6c6f73;
-  --glass: rgba(255,255,255,0.6);
+  --sidebar-width: 260px;
   --radius: 14px;
 }
 
-/* Dark Mode */
+/* Modo oscuro */
 body.dark{
-  --bg:#0f1112;
-  --card:#141517;
+  --bg:#0e1011;
+  --card:#161718;
   --text:#eef1f2;
-  --muted:#9aa0a3;
-  --glass:rgba(255,255,255,0.08);
+  --muted:#9ca0a3;
 }
 
 body{
   margin:0;
-  font-family:"Inter";
   background:var(--bg);
+  font-family:"Inter",sans-serif;
   color:var(--text);
-  transition:background .3s,color .3s;
+  transition:background .25s,color .25s;
 }
-*{box-sizing:border-box}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
 
-/* SIDEBAR */
+/* ==========================================================
+   SIDEBAR DESKTOP
+========================================================== */
 .sidebar{
-  position:fixed;left:0;top:0;bottom:0;
+  position:fixed;
+  top:0; left:0; bottom:0;
   width:var(--sidebar-width);
-  padding:28px 18px;
-  background:rgba(255,255,255,0.04);
-  backdrop-filter:blur(8px);
-  border-right:1px solid rgba(0,0,0,0.05);
-  display:flex;flex-direction:column;
-  z-index:1000;
+  padding:26px 18px;
+  background:var(--card);
+  border-right:1px solid rgba(0,0,0,0.06);
+  z-index:999;
+  display:flex;
+  flex-direction:column;
 }
-.sidebar img{
-  width:58px;height:58px;border-radius:12px;object-fit:cover;
-}
-.brand{display:flex;gap:12px;color:var(--text);text-decoration:none}
-.brand .name{font-weight:700}
-.brand .role{font-size:.8rem;color:var(--muted)}
 
-.side-nav{margin-top:20px;display:flex;flex-direction:column;gap:8px}
+.brand{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+.brand img{
+  width:58px; height:58px;
+  border-radius:12px;
+  object-fit:cover;
+}
+.brand .name{font-weight:700;font-size:1.05rem;}
+.brand .role{font-size:.85rem;color:var(--muted);}
+
+.side-nav{
+  display:flex;
+  flex-direction:column;
+  margin-top:16px;
+  gap:8px;
+}
 .side-nav a{
-  color:var(--text);text-decoration:none;
-  padding:10px 12px;border-radius:10px;
+  padding:10px 13px;
+  border-radius:10px;
   font-weight:600;
 }
-.side-nav a:hover{background:rgba(0,168,107,.12);color:var(--verde)}
+.side-nav a:hover{
+  background:rgba(0,168,107,0.14);
+  color:var(--verde-oscuro);
+}
 
 .cv-btn{
   margin-top:auto;
   background:var(--verde);
-  color:white;padding:12px;
-  border-radius:10px;text-align:center;
-  text-decoration:none;font-weight:600;
-}
-
-/* CONTENT */
-.content{
-  margin-left:calc(var(--sidebar-width) + 20px);
-  padding:20px;
-}
-@media(max-width:700px){
-  .sidebar{display:none}
-  .content{margin-left:0;padding-top:70px}
-}
-
-/* ============================================
-   HERO PREMIUM
-============================================ */
-.hero{
-  position:relative;
-  margin-bottom:30px;
-  border-radius:18px;
-  padding:120px 30px 40px;
-  background:linear-gradient(135deg, #008f61, #00c17d);
-  box-shadow:0 20px 40px rgba(0,0,0,0.25);
+  color:white;
+  padding:12px;
+  border-radius:10px;
+  font-weight:700;
   text-align:center;
-  overflow:visible;
 }
 
-/* FOTO GLASS */
-.hero-photo{
-  width:170px;height:170px;
-  border-radius:50%;
-  object-fit:cover;
-  position:absolute;
-  top:-90px;left:50%;
-  transform:translateX(-50%);
-  z-index:20;
-  border:5px solid rgba(255,255,255,0.9);
-  background:var(--card);
-  box-shadow:
-      0 10px 25px rgba(0,0,0,0.30),
-      0 0 25px rgba(0,255,150,0.25);
-  animation:float 4s ease-in-out infinite;
-}
-@keyframes float{
-  0%{ transform:translateX(-50%) translateY(0) }
-  50%{ transform:translateX(-50%) translateY(-10px) }
-  100%{ transform:translateX(-50%) translateY(0) }
-}
-.hero h1{font-size:2.2rem;margin-top:80px;color:white}
-.hero p{color:white;opacity:.9;font-size:1rem}
-
-@media(max-width:480px){
-  .hero{padding-top:110px}
-  .hero-photo{width:130px;height:130px;top:-70px}
-  .hero h1{font-size:1.6rem;margin-top:65px}
+/* ==========================================================
+   NAV SUPERIOR MÓVIL
+========================================================== */
+.topnav{
+  display:none;
 }
 
-/* CARDS */
+@media(max-width:760px){
+  .sidebar{display:none;}
+  .topnav{
+    display:flex;
+    position:fixed;
+    top:0; left:0; right:0;
+    height:58px;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 16px;
+    background:var(--card);
+    box-shadow:0 4px 16px rgba(0,0,0,.08);
+    z-index:998;
+  }
+}
+
+/* ==========================================================
+   CONTENIDO GENERAL
+========================================================== */
+.content{
+  margin-left:calc(var(--sidebar-width) + 30px);
+  padding:34px 22px 120px;
+}
+@media(max-width:760px){
+  .content{margin-left:0;padding-top:80px;}
+}
+
 .card{
   background:var(--card);
-  border-radius:12px;
-  padding:18px;
-  box-shadow:0 8px 26px rgba(2,6,23,0.05);
-  margin-bottom:20px;
+  padding:20px;
+  border-radius:var(--radius);
+  margin-bottom:22px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.05);
 }
-h2{color:var(--verde-oscuro);margin:8px 0 14px}
 
-.two-col{display:grid;grid-template-columns:1fr 320px;gap:18px}
-@media(max-width:900px){.two-col{grid-template-columns:1fr}}
+h2{margin:8px 0 12px;color:var(--verde-oscuro);}
 
-ul{margin:0;padding-left:18px}
-li{margin-bottom:8px}
-.muted{color:var(--muted)}
+/* ==========================================================
+   HERO PREMIUM
+========================================================== */
+.hero{
+  position:relative;
+  border-radius:22px;
+  padding:120px 20px 70px;
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#009a63,#00d68f);
+  overflow:hidden;
+}
+
+/* Fondo animado */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 25% 80%,rgba(255,255,255,.3),transparent 60%),
+    radial-gradient(circle at 70% 20%,rgba(255,255,255,.22),transparent 60%);
+  animation:heroFloat 12s infinite alternate ease-in-out;
+  opacity:.55;
+}
+@keyframes heroFloat{
+  from{transform:translateY(0);}
+  to{transform:translateY(-26px);}
+}
+
+/* Foto flotante */
+.photo-wrapper{
+  position:absolute;
+  top:-70px;
+  left:50%;
+  transform:translateX(-50%);
+  width:200px; height:200px;
+  padding:6px;
+  background:linear-gradient(135deg,#ffffff,#00ffd5);
+  border-radius:50%;
+  box-shadow:0 18px 40px rgba(0,0,0,.25);
+  z-index:10;
+}
+.photo{
+  width:100%; height:100%;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+/* Textos */
+.hero-title{
+  margin-top:140px;
+  font-size:2.2rem;
+  font-weight:800;
+}
+.hero-sub{
+  font-size:1.05rem;
+  opacity:.92;
+}
+
+/* Botón Modo oscuro */
+.dark-btn{
+  position:absolute;
+  top:16px; right:16px;
+  font-size:21px;
+  border:none;
+  background:rgba(255,255,255,0.85);
+  color:#222;
+  padding:8px 11px;
+  border-radius:50%;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+  z-index:20;
+}
+body.dark .dark-btn{
+  background:rgba(26,26,26,0.65);
+  color:white;
+}
+
+@media(max-width:480px){
+  .photo-wrapper{width:140px;height:140px;top:-60px;}
+  .hero-title{font-size:1.6rem;margin-top:100px;}
+}
+
+/* ==========================================================
+   MASONRY GRID
+========================================================== */
+.masonry{
+  display:flex;
+  gap:18px;
+}
+.mason-col{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.masonry-item{text-decoration:none;color:inherit;}
+
+.p-card{
+  background:var(--card);
+  padding:16px;
+  border-radius:var(--radius);
+  border-left:6px solid var(--verde);
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  transition:.25s;
+}
+.p-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 24px rgba(0,0,0,0.15);
+}
+.badge{
+  display:inline-block;
+  background:var(--verde);
+  color:white;
+  padding:4px 10px;
+  border-radius:8px;
+  font-size:.75rem;
+  margin-right:4px;
+  margin-top:6px;
+}
 </style>
+
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
+<!-- ======================================================
+     SIDEBAR (DESKTOP)
+====================================================== -->
 <aside class="sidebar">
-  <a class="brand" href="index.html">
-    <img src="foto_edison_tobar.png" alt="Foto Edison">
+  <a class="brand" href="#">
+    <img src="foto_edison_tobar.png" alt="">
     <div>
-      <div class="name">Edison Javier Tobar</div>
-      <div class="role">Ciberseguridad • Automatización</div>
+      <div class="name">Edison J. Tobar</div>
+      <div class="role">Ciberseguridad · Automatización</div>
     </div>
   </a>
 
@@ -173,15 +290,35 @@ li{margin-bottom:8px}
   <a class="cv-btn" href="CV_Edison_Tobar_2025.pdf" target="_blank">Descargar CV</a>
 </aside>
 
-<!-- CONTENIDO -->
+<!-- ======================================================
+     TOPNAV (MÓVIL)
+====================================================== -->
+<div class="topnav">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <img src="foto_edison_tobar.png" width="38" height="38" style="border-radius:10px;object-fit:cover;">
+    <strong>Edison Tobar</strong>
+  </div>
+
+  <button id="darkToggleMobile" style="background:none;border:none;font-size:22px;">🌓</button>
+</div>
+
+<!-- ======================================================
+     CONTENIDO
+====================================================== -->
 <main class="content">
 
-<!-- HERO -->
+<!-- HERO PREMIUM -->
 <section class="hero">
-  <img class="hero-photo" src="foto_edison_tobar.png" alt="Edison Tobar">
-  <h1>Edison Javier Tobar Roblero</h1>
-  <p>MSc. Ciberseguridad • Power Platform • Automatización • Infraestructura IT</p>
+  <button id="darkToggle" class="dark-btn">🌓</button>
+
+  <div class="photo-wrapper">
+    <img class="photo" src="foto_edison_tobar.png" alt="">
+  </div>
+
+  <h1 class="hero-title">Edison Javier Tobar Roblero</h1>
+  <p class="hero-sub">MSc. Ciberseguridad · Power Platform · Automatización · Infraestructura IT</p>
 </section>
+
 <!-- PERFIL -->
 <section id="perfil" class="card">
   <h2>Perfil Profesional</h2>
@@ -193,42 +330,27 @@ li{margin-bottom:8px}
 </section>
 
 <!-- FORMACIÓN + CONTACTO -->
-<section class="two-col">
-
-  <!-- FORMACIÓN -->
-  <div class="card" id="formacion">
-    <h2>Formación Académica</h2>
-    <ul>
-      <li>Maestría en Ciberseguridad — U. Hemisferios - IMF</li>
-      <li>Ingeniería en Informática y Ciencias de la Computación — UTE</li>
-      <li>Tecnólogo en Análisis de Sistemas — EPN</li>
-    </ul>
-
-    <h2 id="certificaciones" style="margin-top:18px">Certificaciones Destacadas</h2>
-    <ul>
-      <li>EHCA — Ethical Hacking Certified Associate</li>
-      <li>CAPC — Cybersecurity Awareness Professional Certification</li>
-      <li>CEHPC — Ethical Hacking Professional Certification</li>
-      <li>Power Platform Consultant — AKROSS</li>
-      <li>IA Aplicada a la Docencia — UDLA</li>
-    </ul>
-  </div>
-
-  <!-- CONTACTO -->
-  <aside class="card" id="contacto">
-    <h2>Contacto</h2>
-    <p class="muted">
-      📧 <a href="mailto:etobarroblero@gmail.com">etobarroblero@gmail.com</a><br>
-      📱 0999592340<br>
-      🔗 <a href="https://www.linkedin.com/in/edisontobar" target="_blank">LinkedIn /edisontobar</a><br><br>
-      📄 <a href="CV_Edison_Tobar_2025.pdf" class="cv-btn" target="_blank">Descargar CV</a>
-    </p>
-  </aside>
-
+<section class="card" id="formacion">
+  <h2>Formación Académica</h2>
+  <ul>
+    <li>Maestría en Ciberseguridad — U. Hemisferios - IMF</li>
+    <li>Ingeniería en Informática y Ciencias de la Computación — UTE</li>
+    <li>Tecnólogo en Análisis de Sistemas — EPN</li>
+  </ul>
 </section>
 
-<!-- HABILIDADES -->
-<section id="habilidades" class="card">
+<section class="card" id="certificaciones">
+  <h2>Certificaciones</h2>
+  <ul>
+    <li>EHCA — Ethical Hacking Certified Associate</li>
+    <li>CAPC — Cybersecurity Awareness Professional Certification</li>
+    <li>CEHPC — Ethical Hacking Professional Certification</li>
+    <li>Power Platform Consultant — AKROSS</li>
+    <li>IA Aplicada a la Docencia — UDLA</li>
+  </ul>
+</section>
+
+<section class="card" id="habilidades">
   <h2>Habilidades Técnicas</h2>
   <ul>
     <li>Power Apps, Power Automate, Power BI</li>
@@ -239,8 +361,7 @@ li{margin-bottom:8px}
   </ul>
 </section>
 
-<!-- EXPERIENCIA -->
-<section id="experiencia" class="card">
+<section class="card" id="experiencia">
   <h2>Experiencia Profesional</h2>
   <ul>
     <li><strong>Información Tecnológica del Ecuador</strong> (6 años) — Administración de servidores, telefonía IP, ERP, soporte técnico y capacitación.</li>
@@ -248,14 +369,13 @@ li{margin-bottom:8px}
   </ul>
 </section>
 
-<!-- PORTAFOLIO MASONRY -->
+<!-- PORTAFOLIO -->
 <section id="portafolio" class="card">
   <h2>Portafolio de Proyectos</h2>
-  <p class="muted">Proyectos destacados que reflejan mi experiencia en ciberseguridad, automatización y desarrollo corporativo.</p>
+  <p class="muted">Proyectos destacados en ciberseguridad, automatización y desarrollo corporativo.</p>
 
   <div id="masonry" class="masonry">
 
-    <!-- PROYECTO 1 -->
     <a class="masonry-item" href="proyecto-tickets.html">
       <div class="p-card">
         <h3>🔐 Sistema de Tickets Corporativo</h3>
@@ -265,26 +385,23 @@ li{margin-bottom:8px}
       </div>
     </a>
 
-    <!-- PROYECTO 2 -->
     <a class="masonry-item" href="proyecto-automatizacion.html">
       <div class="p-card">
         <h3>⚡ Automatización con Power Platform</h3>
-        <p>Flujos automatizados, apps internas y dashboards corporativos.</p>
-        <span class="badge">Power Automate</span>
+        <p>Flujos automatizados, apps internas y dashboards.</p>
+        <span class="badge">Automatización</span>
         <span class="badge">Power BI</span>
       </div>
     </a>
 
-    <!-- PROYECTO 3 -->
     <a class="masonry-item" href="proyecto-cableado.html">
       <div class="p-card">
-        <h3>🛡 Cableado Estructurado Planta</h3>
-        <p>Dirección y ejecución del cableado estructurado en planta farmacéutica.</p>
+        <h3>🛡 Cableado Estructurado</h3>
+        <p>Dirección y ejecución de cableado estructurado en planta.</p>
         <span class="badge">Infraestructura</span>
       </div>
     </a>
 
-    <!-- PROYECTO 4 -->
     <a class="masonry-item" href="proyecto-firmas.html">
       <div class="p-card">
         <h3>📊 Sistema de Firmas Electrónicas</h3>
@@ -297,66 +414,75 @@ li{margin-bottom:8px}
   </div>
 </section>
 
+<!-- CONTACTO -->
+<section id="contacto" class="card">
+  <h2>Contacto</h2>
+  <p>
+    📧 <a href="mailto:etobarroblero@gmail.com">etobarroblero@gmail.com</a><br>
+    📱 0999592340<br>
+    🔗 <a href="https://www.linkedin.com/in/edisontobar" target="_blank">LinkedIn /edisontobar</a><br><br>
+    📄 <a href="CV_Edison_Tobar_2025.pdf" class="cv-btn" target="_blank">Descargar CV</a>
+  </p>
+</section>
+
 </main>
 
-<!-- FOOTER -->
-<footer style="text-align:center;padding:30px;color:var(--muted);font-size:0.9rem">
+<footer style="text-align:center;color:var(--muted);padding:30px;margin-top:40px;">
   © 2025 Edison Tobar — Portafolio Profesional
 </footer>
 
-<!-- ===============================
+<!-- ======================================================
      SCRIPTS
-================================ -->
+====================================================== -->
 <script>
-/* Dark Mode */
-function applyDarkMode(on){
-  if(on){ document.body.classList.add("dark"); localStorage.setItem("darkMode","on"); }
-  else{ document.body.classList.remove("dark"); localStorage.setItem("darkMode","off"); }
-}
-if(localStorage.getItem("darkMode")==="on"){ applyDarkMode(true); }
 
-/* Masonry */
+/* DARK MODE */
+const darkToggle = document.getElementById("darkToggle");
+const darkToggleMobile = document.getElementById("darkToggleMobile");
+
+function setDark(mode){
+  if(mode){
+    document.body.classList.add("dark");
+    localStorage.setItem("darkMode","on");
+  } else {
+    document.body.classList.remove("dark");
+    localStorage.setItem("darkMode","off");
+  }
+}
+
+setDark(localStorage.getItem("darkMode")==="on");
+
+[darkToggle, darkToggleMobile].forEach(btn=>{
+  if(btn){ btn.addEventListener("click",()=>setDark(!document.body.classList.contains("dark"))); }
+});
+
+/* MASONRY */
 function masonry(){
   const grid=document.getElementById("masonry");
   if(!grid) return;
+
   const items=[...grid.children];
-  let cols=window.innerWidth<600?1:window.innerWidth<900?2:window.innerWidth<1300?3:4;
-  let arr=Array.from({length:cols},()=>[]);
-  items.forEach((it,i)=>arr[i%cols].push(it));
+  let cols = window.innerWidth < 600 ? 1 :
+             window.innerWidth < 900 ? 2 :
+             window.innerWidth < 1300 ? 3 : 4;
+
+  let columns = Array.from({length:cols},()=>[]);
+
+  items.forEach((item,i)=>columns[i%cols].push(item));
+
   grid.innerHTML="";
-  arr.forEach(col=>{
+  columns.forEach(col=>{
     let div=document.createElement("div");
     div.className="mason-col";
-    col.forEach(it=>div.appendChild(it));
+    col.forEach(el=>div.appendChild(el));
     grid.appendChild(div);
   });
 }
+
 window.addEventListener("load",masonry);
 window.addEventListener("resize",masonry);
-</script>
 
-<!-- Masonry CSS -->
-<style>
-.masonry{display:flex;gap:18px;}
-.mason-col{flex:1;display:flex;flex-direction:column;gap:18px}
-.p-card{
-  background:var(--card);
-  border-left:6px solid var(--verde);
-  padding:16px;border-radius:12px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.06);
-  transition:.25s;
-}
-.p-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 10px 26px rgba(0,0,0,0.12);
-}
-.badge{
-  display:inline-block;background:var(--verde);
-  color:white;font-size:.75rem;
-  padding:4px 10px;border-radius:8px;
-  margin-right:4px;margin-top:8px;
-}
-</style>
+</script>
 
 </body>
 </html>
