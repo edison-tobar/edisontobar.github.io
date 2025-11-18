@@ -1,283 +1,248 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Edison Tobar — Portafolio Profesional</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Edison Javier Tobar Roblero</title>
 
 <style>
-/* ==========================================================
-   VARIABLES GLOBALES
-========================================================== */
-:root{
-  --verde: #00a86b;
-  --verde-oscuro: #00784f;
-  --bg: #f4f6f5;
-  --card: #ffffff;
-  --text: #1b1b1b;
-  --muted: #6c6f73;
-  --sidebar-width: 260px;
-  --radius: 14px;
+/* --------------------------- */
+/*         VARIABLES           */
+/* --------------------------- */
+
+:root {
+  --sidebar-bg: #0d0d0d;
+  --content-bg: #111;
+  --text-color: #fff;
+  --accent: #00cc88;
+  --card-bg: #1a1a1a;
+  --hero-gradient: linear-gradient(135deg, #05d585, #00a36c);
 }
 
-/* Modo oscuro */
-body.dark{
-  --bg:#0e1011;
-  --card:#161718;
-  --text:#eef1f2;
-  --muted:#9ca0a3;
+.light {
+  --sidebar-bg: #f0f0f0;
+  --content-bg: #ffffff;
+  --text-color: #111;
+  --accent: #00a36c;
+  --card-bg: #f6f6f6;
+  --hero-gradient: linear-gradient(135deg, #BBF5D2, #7CE2B2);
 }
 
-body{
-  margin:0;
-  background:var(--bg);
-  font-family:"Inter",sans-serif;
-  color:var(--text);
-  transition:background .25s,color .25s;
-}
-a{text-decoration:none;color:inherit;}
-img{display:block;max-width:100%;}
+/* --------------------------- */
+/*      GLOBAL STYLE           */
+/* --------------------------- */
 
-/* ==========================================================
-   SIDEBAR DESKTOP
-========================================================== */
-.sidebar{
-  position:fixed;
-  top:0; left:0; bottom:0;
-  width:var(--sidebar-width);
-  padding:26px 18px;
-  background:var(--card);
-  border-right:1px solid rgba(0,0,0,0.06);
-  z-index:999;
-  display:flex;
-  flex-direction:column;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--content-bg);
+  color: var(--text-color);
+  display: flex;
+  overflow-x: hidden;
 }
 
-.brand{
-  display:flex;
-  gap:14px;
-  align-items:center;
-}
-.brand img{
-  width:58px; height:58px;
-  border-radius:12px;
-  object-fit:cover;
-}
-.brand .name{font-weight:700;font-size:1.05rem;}
-.brand .role{font-size:.85rem;color:var(--muted);}
+/* --------------------------- */
+/*        SIDEBAR              */
+/* --------------------------- */
 
-.side-nav{
-  display:flex;
-  flex-direction:column;
-  margin-top:16px;
-  gap:8px;
-}
-.side-nav a{
-  padding:10px 13px;
-  border-radius:10px;
-  font-weight:600;
-}
-.side-nav a:hover{
-  background:rgba(0,168,107,0.14);
-  color:var(--verde-oscuro);
+.sidebar {
+  width: 240px;
+  background: var(--sidebar-bg);
+  height: 100vh;
+  padding: 20px;
+  position: fixed;
+  top: 0; left: 0;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
 }
 
-.cv-btn{
-  margin-top:auto;
-  background:var(--verde);
-  color:white;
-  padding:12px;
-  border-radius:10px;
-  font-weight:700;
-  text-align:center;
+.sidebar img {
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-/* ==========================================================
-   NAV SUPERIOR MÓVIL
-========================================================== */
-.topnav{
-  display:none;
+.sidebar h2 {
+  font-size: 18px;
+  margin: 10px 0 0;
 }
 
-@media(max-width:760px){
-  .sidebar{display:none;}
-  .topnav{
-    display:flex;
-    position:fixed;
-    top:0; left:0; right:0;
-    height:58px;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 16px;
-    background:var(--card);
-    box-shadow:0 4px 16px rgba(0,0,0,.08);
-    z-index:998;
+.sidebar p {
+  margin: 0;
+  font-size: 13px;
+  opacity: .7;
+}
+
+.nav-link {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.nav-link a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 15px;
+}
+
+.nav-link a:hover {
+  color: var(--accent);
+}
+
+/* --------------------------- */
+/*        MAIN CONTENT         */
+/* --------------------------- */
+
+.main {
+  margin-left: 240px;
+  width: calc(100% - 240px);
+}
+
+/* --------------------------- */
+/*            HERO             */
+/* --------------------------- */
+
+.hero {
+  background: var(--hero-gradient);
+  padding: 120px 20px 80px;
+  border-radius: 0 0 18px 18px;
+  position: relative;
+  text-align: center;
+  min-height: 420px;
+  overflow: visible !important; /* ← FIX para que NO corte la foto */
+}
+
+.hero-photo-container {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 160px;
+  background: var(--content-bg);
+  border-radius: 50%;
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 28px rgba(0,0,0,.4);
+}
+
+.hero-photo-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top; /* ← centra correctamente */
+}
+
+.hero h1 {
+  margin-top: 100px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.hero h2 {
+  margin-top: 10px;
+  font-size: 16px;
+  opacity: .9;
+}
+
+/* --------------------------- */
+/*           CONTENT           */
+/* --------------------------- */
+
+.section {
+  background: var(--card-bg);
+  margin: 25px auto;
+  padding: 25px;
+  width: 90%;
+  border-radius: 12px;
+}
+
+.section h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.contact a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 18px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+/* --------------------------- */
+/*         MASONRY GRID        */
+/* --------------------------- */
+
+.masonry {
+  column-count: 3;
+  column-gap: 15px;
+}
+
+.masonry img {
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+/* --------------------------- */
+/*        RESPONSIVE           */
+/* --------------------------- */
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 180px;
+  }
+  .main {
+    margin-left: 180px;
+  }
+  .hero {
+    padding-top: 140px;
+    min-height: 380px;
+  }
+  .hero-photo-container {
+    width: 135px;
+    height: 135px;
+    top: -70px;
+  }
+  .masonry {
+    column-count: 1;
   }
 }
 
-/* ==========================================================
-   CONTENIDO GENERAL
-========================================================== */
-.content{
-  margin-left:calc(var(--sidebar-width) + 30px);
-  padding:34px 22px 120px;
-}
-@media(max-width:760px){
-  .content{margin-left:0;padding-top:80px;}
-}
-
-.card{
-  background:var(--card);
-  padding:20px;
-  border-radius:var(--radius);
-  margin-bottom:22px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.05);
-}
-
-h2{margin:8px 0 12px;color:var(--verde-oscuro);}
-
-/* ==========================================================
-   HERO PREMIUM
-========================================================== */
-.hero{
-  position:relative;
-  border-radius:22px;
-  padding:120px 20px 70px;
-  text-align:center;
-  color:white;
-  background:linear-gradient(135deg,#009a63,#00d68f);
-  overflow:hidden;
-}
-
-/* Fondo animado */
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 25% 80%,rgba(255,255,255,.3),transparent 60%),
-    radial-gradient(circle at 70% 20%,rgba(255,255,255,.22),transparent 60%);
-  animation:heroFloat 12s infinite alternate ease-in-out;
-  opacity:.55;
-}
-@keyframes heroFloat{
-  from{transform:translateY(0);}
-  to{transform:translateY(-26px);}
-}
-
-/* Foto flotante */
-.photo-wrapper{
-  position:absolute;
-  top:-70px;
-  left:50%;
-  transform:translateX(-50%);
-  width:200px; height:200px;
-  padding:6px;
-  background:linear-gradient(135deg,#ffffff,#00ffd5);
-  border-radius:50%;
-  box-shadow:0 18px 40px rgba(0,0,0,.25);
-  z-index:10;
-}
-.photo{
-  width:100%; height:100%;
-  border-radius:50%;
-  object-fit:cover;
-}
-
-/* Textos */
-.hero-title{
-  margin-top:140px;
-  font-size:2.2rem;
-  font-weight:800;
-}
-.hero-sub{
-  font-size:1.05rem;
-  opacity:.92;
-}
-
-/* Botón Modo oscuro */
-.dark-btn{
-  position:absolute;
-  top:16px; right:16px;
-  font-size:21px;
-  border:none;
-  background:rgba(255,255,255,0.85);
-  color:#222;
-  padding:8px 11px;
-  border-radius:50%;
-  cursor:pointer;
-  box-shadow:0 4px 12px rgba(0,0,0,.15);
-  z-index:20;
-}
-body.dark .dark-btn{
-  background:rgba(26,26,26,0.65);
-  color:white;
-}
-
-@media(max-width:480px){
-  .photo-wrapper{width:140px;height:140px;top:-60px;}
-  .hero-title{font-size:1.6rem;margin-top:100px;}
-}
-
-/* ==========================================================
-   MASONRY GRID
-========================================================== */
-.masonry{
-  display:flex;
-  gap:18px;
-}
-.mason-col{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-}
-.masonry-item{text-decoration:none;color:inherit;}
-
-.p-card{
-  background:var(--card);
-  padding:16px;
-  border-radius:var(--radius);
-  border-left:6px solid var(--verde);
-  box-shadow:0 6px 18px rgba(0,0,0,0.06);
-  transition:.25s;
-}
-.p-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 12px 24px rgba(0,0,0,0.15);
-}
-.badge{
-  display:inline-block;
-  background:var(--verde);
-  color:white;
-  padding:4px 10px;
-  border-radius:8px;
-  font-size:.75rem;
-  margin-right:4px;
-  margin-top:6px;
-}
 </style>
 
 </head>
-
 <body>
 
-<!-- ======================================================
-     SIDEBAR (DESKTOP)
-====================================================== -->
-<aside class="sidebar">
-  <a class="brand" href="#">
-    <img src="foto_edison_tobar.png" alt="">
-    <div>
-      <div class="name">Edison J. Tobar</div>
-      <div class="role">Ciberseguridad · Automatización</div>
-    </div>
-  </a>
+<!-- =======================
+          SIDEBAR
+======================= -->
+<div class="sidebar">
+  <img src="foto_edison_tobar.png" alt="Foto">
+  <h2>Edison J. Tobar</h2>
+  <p>Ciberseguridad • Automatización</p>
 
-  <nav class="side-nav">
+  <div class="nav-link">
     <a href="#perfil">Perfil</a>
     <a href="#formacion">Formación</a>
     <a href="#certificaciones">Certificaciones</a>
@@ -285,203 +250,125 @@ body.dark .dark-btn{
     <a href="#experiencia">Experiencia</a>
     <a href="#portafolio">Portafolio</a>
     <a href="#contacto">Contacto</a>
-  </nav>
-
-  <a class="cv-btn" href="CV_Edison_Tobar_2025.pdf" target="_blank">Descargar CV</a>
-</aside>
-
-<!-- ======================================================
-     TOPNAV (MÓVIL)
-====================================================== -->
-<div class="topnav">
-  <div style="display:flex;align-items:center;gap:10px;">
-    <img src="foto_edison_tobar.png" width="38" height="38" style="border-radius:10px;object-fit:cover;">
-    <strong>Edison Tobar</strong>
   </div>
-
-  <button id="darkToggleMobile" style="background:none;border:none;font-size:22px;">🌓</button>
 </div>
 
-<!-- ======================================================
-     CONTENIDO
-====================================================== -->
-<main class="content">
+<!-- =======================
+          MAIN
+======================= -->
+<div class="main">
 
-<!-- HERO PREMIUM -->
-<section class="hero">
-  <button id="darkToggle" class="dark-btn">🌓</button>
-
-  <div class="photo-wrapper">
-    <img class="photo" src="foto_edison_tobar.png" alt="">
+<!-- =======================
+          HERO
+======================= -->
+<div class="hero">
+  <div class="hero-photo-container">
+    <img src="foto_edison_tobar.png" alt="Edison">
   </div>
 
-  <h1 class="hero-title">Edison Javier Tobar Roblero</h1>
-  <p class="hero-sub">MSc. Ciberseguridad · Power Platform · Automatización · Infraestructura IT</p>
-</section>
+  <h1>Edison Javier Tobar Roblero</h1>
+  <h2>MSc. Ciberseguridad • Power Platform • Automatización • Infraestructura IT</h2>
 
-<!-- PERFIL -->
-<section id="perfil" class="card">
-  <h2>Perfil Profesional</h2>
+  <!-- Toggle modo oscuro -->
+  <button onclick="toggleMode()" style="
+    position:absolute; top:20px; right:20px; 
+    background:#fff; border:none; padding:10px; border-radius:50%;
+    cursor:pointer;">🌓</button>
+</div>
+
+<!-- =======================
+       SECCIÓN PERFIL
+======================= -->
+<div class="section" id="perfil">
+  <h3>Perfil Profesional</h3>
   <p>
-    Profesional especializado en ciberseguridad, automatización de procesos y plataformas tecnológicas.
-    Experiencia en Power Platform, análisis de datos, infraestructura IT, telefonía IP, herramientas de hacking ético
-    y gestión de servidores. Enfocado en proteger activos digitales y optimizar entornos corporativos mediante soluciones seguras y eficientes.
+    Profesional especializado en ciberseguridad, automatización de procesos y plataformas tecnológicas. 
+    Experiencia en Power Platform, análisis de datos, infraestructura IT, telefonía IP y administración 
+    de servidores. Enfocado en seguridad corporativa y optimización de entornos tecnológicos.
   </p>
-</section>
+</div>
 
-<!-- FORMACIÓN + CONTACTO -->
-<section class="card" id="formacion">
-  <h2>Formación Académica</h2>
+<!-- =======================
+       FORMACIÓN
+======================= -->
+<div class="section" id="formacion">
+  <h3>Formación Académica</h3>
   <ul>
     <li>Maestría en Ciberseguridad — U. Hemisferios - IMF</li>
-    <li>Ingeniería en Informática y Ciencias de la Computación — UTE</li>
-    <li>Tecnólogo en Análisis de Sistemas — EPN</li>
+    <li>Ingeniería en Informática — UTE</li>
+    <li>Tecnología en Análisis de Sistemas — EPN</li>
   </ul>
-</section>
+</div>
 
-<section class="card" id="certificaciones">
-  <h2>Certificaciones</h2>
+<!-- =======================
+     CERTIFICACIONES
+======================= -->
+<div class="section" id="certificaciones">
+  <h3>Certificaciones Destacadas</h3>
   <ul>
     <li>EHCA — Ethical Hacking Certified Associate</li>
-    <li>CAPC — Cybersecurity Awareness Professional Certification</li>
-    <li>CEHPC — Ethical Hacking Professional Certification</li>
+    <li>CAPC — Cybersecurity Awareness Certification</li>
+    <li>CEHPC — Ethical Hacking Professional</li>
     <li>Power Platform Consultant — AKROSS</li>
-    <li>IA Aplicada a la Docencia — UDLA</li>
+    <li>IA aplicada a la Docencia — UDLA</li>
   </ul>
-</section>
+</div>
 
-<section class="card" id="habilidades">
-  <h2>Habilidades Técnicas</h2>
+<!-- =======================
+     HABILIDADES
+======================= -->
+<div class="section" id="habilidades">
+  <h3>Habilidades Técnicas</h3>
   <ul>
-    <li>Power Apps, Power Automate, Power BI</li>
-    <li>Lenguajes: C++, Visual Basic</li>
-    <li>Bases de Datos: Oracle, SQL Server, DB2</li>
-    <li>Seguridad: Metasploit, Nmap, Nessus, Hydra, Sqlmap</li>
-    <li>Servidores Windows / Linux</li>
+    <li>Power Apps • Power Automate • Power BI</li>
+    <li>Python • Automatización</li>
+    <li>Ciberseguridad • Hacking Ético</li>
+    <li>Servidores Windows/Linux</li>
+    <li>Telefonía IP</li>
   </ul>
-</section>
+</div>
 
-<section class="card" id="experiencia">
-  <h2>Experiencia Profesional</h2>
-  <ul>
-    <li><strong>Información Tecnológica del Ecuador</strong> (6 años) — Administración de servidores, telefonía IP, ERP, soporte técnico y capacitación.</li>
-    <li><strong>Servicios Cybercell</strong> (2.5 años) — Redes, seguridad informática, soporte y administración de bases de datos.</li>
-  </ul>
-</section>
+<!-- =======================
+     EXPERIENCIA
+======================= -->
+<div class="section" id="experiencia">
+  <h3>Experiencia Profesional</h3>
+  <p>Añadirás aquí tus experiencias laborales.</p>
+</div>
 
-<!-- PORTAFOLIO -->
-<section id="portafolio" class="card">
-  <h2>Portafolio de Proyectos</h2>
-  <p class="muted">Proyectos destacados en ciberseguridad, automatización y desarrollo corporativo.</p>
+<!-- =======================
+     PORTAFOLIO
+======================= -->
+<div class="section" id="portafolio">
+  <h3>Portafolio</h3>
 
-  <div id="masonry" class="masonry">
-
-    <a class="masonry-item" href="proyecto-tickets.html">
-      <div class="p-card">
-        <h3>🔐 Sistema de Tickets Corporativo</h3>
-        <p>Sistema automatizado con Power Platform para una empresa farmacéutica.</p>
-        <span class="badge">Power Apps</span>
-        <span class="badge">ISO 27001</span>
-      </div>
-    </a>
-
-    <a class="masonry-item" href="proyecto-automatizacion.html">
-      <div class="p-card">
-        <h3>⚡ Automatización con Power Platform</h3>
-        <p>Flujos automatizados, apps internas y dashboards.</p>
-        <span class="badge">Automatización</span>
-        <span class="badge">Power BI</span>
-      </div>
-    </a>
-
-    <a class="masonry-item" href="proyecto-cableado.html">
-      <div class="p-card">
-        <h3>🛡 Cableado Estructurado</h3>
-        <p>Dirección y ejecución de cableado estructurado en planta.</p>
-        <span class="badge">Infraestructura</span>
-      </div>
-    </a>
-
-    <a class="masonry-item" href="proyecto-firmas.html">
-      <div class="p-card">
-        <h3>📊 Sistema de Firmas Electrónicas</h3>
-        <p>Implementación de flujos firmados con normativa nacional.</p>
-        <span class="badge">SQL</span>
-        <span class="badge">Oracle</span>
-      </div>
-    </a>
-
+  <div class="masonry">
+    <img src="assets/proyecto1.png">
+    <img src="assets/proyecto2.png">
+    <img src="assets/proyecto3.png">
+    <img src="assets/proyecto4.png">
   </div>
-</section>
 
-<!-- CONTACTO -->
-<section id="contacto" class="card">
-  <h2>Contacto</h2>
-  <p>
-    📧 <a href="mailto:etobarroblero@gmail.com">etobarroblero@gmail.com</a><br>
-    📱 0999592340<br>
-    🔗 <a href="https://www.linkedin.com/in/edisontobar" target="_blank">LinkedIn /edisontobar</a><br><br>
-    📄 <a href="CV_Edison_Tobar_2025.pdf" class="cv-btn" target="_blank">Descargar CV</a>
-  </p>
-</section>
+</div>
 
-</main>
+<!-- =======================
+     CONTACTO
+======================= -->
+<div class="section contact" id="contacto">
+  <h3>Contacto</h3>
+  <p>📧 etobarroblero@gmail.com</p>
+  <p>📱 0999592340</p>
+  <p><a href="https://linkedin.com/in/edisontobar" target="_blank">LinkedIn</a></p>
 
-<footer style="text-align:center;color:var(--muted);padding:30px;margin-top:40px;">
-  © 2025 Edison Tobar — Portafolio Profesional
-</footer>
+  <a href="CV_Edison_Tobar_2025.pdf" class="download-btn" download>Descargar CV</a>
+</div>
 
-<!-- ======================================================
-     SCRIPTS
-====================================================== -->
+</div>
+
 <script>
-
-/* DARK MODE */
-const darkToggle = document.getElementById("darkToggle");
-const darkToggleMobile = document.getElementById("darkToggleMobile");
-
-function setDark(mode){
-  if(mode){
-    document.body.classList.add("dark");
-    localStorage.setItem("darkMode","on");
-  } else {
-    document.body.classList.remove("dark");
-    localStorage.setItem("darkMode","off");
-  }
+function toggleMode() {
+  document.body.classList.toggle("light");
 }
-
-setDark(localStorage.getItem("darkMode")==="on");
-
-[darkToggle, darkToggleMobile].forEach(btn=>{
-  if(btn){ btn.addEventListener("click",()=>setDark(!document.body.classList.contains("dark"))); }
-});
-
-/* MASONRY */
-function masonry(){
-  const grid=document.getElementById("masonry");
-  if(!grid) return;
-
-  const items=[...grid.children];
-  let cols = window.innerWidth < 600 ? 1 :
-             window.innerWidth < 900 ? 2 :
-             window.innerWidth < 1300 ? 3 : 4;
-
-  let columns = Array.from({length:cols},()=>[]);
-
-  items.forEach((item,i)=>columns[i%cols].push(item));
-
-  grid.innerHTML="";
-  columns.forEach(col=>{
-    let div=document.createElement("div");
-    div.className="mason-col";
-    col.forEach(el=>div.appendChild(el));
-    grid.appendChild(div);
-  });
-}
-
-window.addEventListener("load",masonry);
-window.addEventListener("resize",masonry);
-
 </script>
 
 </body>
