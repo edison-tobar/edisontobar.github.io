@@ -1,33 +1,90 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Automatización Empresarial — Edison Tobar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{--verde:#00a86b;--bg:#f4f6f5;--card:#fff;--text:#222}
-    body{font-family:Inter,system-ui;margin:0;background:var(--bg);color:var(--text);padding:24px}
-    .wrap{max-width:900px;margin:0 auto}
-    .back{display:inline-block;margin-bottom:12px;text-decoration:none;color:var(--verde);font-weight:700}
-    .card{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
-    .cta{display:inline-block;background:var(--verde);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Automatización Empresarial — Edison Tobar</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
+
+<style>
+:root{--verde:#00a86b;--verde-oscuro:#00784f;--bg:#f4f6f5;--card:#fff;--text:#222;--muted:#666}
+@media (prefers-color-scheme: dark){:root{--bg:#0f1112;--card:#131416;--text:#e9eef0;--muted:#9aa0a3}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--text);padding:18px}
+.wrap{max-width:980px;margin:18px auto}
+.back{display:inline-block;color:var(--verde);text-decoration:none;font-weight:700;margin-bottom:12px}
+.header{background:var(--card);padding:20px;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.06)}
+.header h1{margin:0}
+.slider{display:flex;gap:12px;overflow-x:auto;padding:12px;border-radius:12px}
+.slider a{flex:0 0 80%;max-width:760px}
+.slider img{width:100%;height:360px;object-fit:cover;border-radius:10px}
+.thumbs{display:flex;gap:8px;margin-top:12px}
+.thumbs img{width:90px;height:60px;object-fit:cover;border-radius:6px;cursor:pointer;opacity:.95}
+.ba-wrap{position:relative;margin-top:20px;border-radius:10px;overflow:hidden}
+.ba-wrap img{width:100%;height:420px;object-fit:cover}
+.ba-overlay{position:absolute;top:0;left:0;height:100%;width:50%;overflow:hidden}
+.ba-divider{position:absolute;top:0;left:50%;width:2px;height:100%;background:rgba(255,255,255,0.6);transform:translateX(-1px)}
+.ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;cursor:ew-resize;box-shadow:0 6px 18px rgba(0,0,0,0.2)}
+.cta{display:inline-block;background:var(--verde);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;margin-top:16px}
+</style>
 </head>
 <body>
   <div class="wrap">
     <a class="back" href="index.html">← Volver al portafolio</a>
-    <div class="card">
+
+    <div class="header">
       <h1>⚡ Automatización Empresarial</h1>
-      <p class="meta">Power Automate · Power BI · Integración de Procesos</p>
-      <p>Descripción: Implementación de flujos de trabajo que automatizan tareas repetitivas (aprobaciones, notificaciones, generación de documentos). Integración con sistemas ERP y generación de dashboards para gobernar procesos.</p>
-      <ul>
-        <li>Automatización de flujo de aprobación multi-nivel</li>
-        <li>Notificaciones vía Teams / Email</li>
-        <li>Generación automática de PDFs y almacenamiento con convención de nombres</li>
-        <li>Dashboards de seguimiento en Power BI</li>
-      </ul>
-      <p><a class="cta" href="CV_Edison_Tobar_2025.pdf" target="_blank">Descargar CV</a></p>
+      <p class="meta" style="color:var(--muted)">Power Automate · Power Apps · Power BI</p>
+      <p>Automatización de flujos de trabajo multi-nivel, generación automática de documentos, notificaciones y dashboards para gobernanza.</p>
     </div>
+
+    <div class="slider" id="slider2">
+      <a href="assets/proj2/img1.png" class="glightbox" data-gallery="proj2"><img src="assets/proj2/img1.png" loading="lazy" alt=""></a>
+      <a href="assets/proj2/img2.png" class="glightbox" data-gallery="proj2"><img src="assets/proj2/img2.png" loading="lazy" alt=""></a>
+      <a href="assets/proj2/img3.png" class="glightbox" data-gallery="proj2"><img src="assets/proj2/img3.png" loading="lazy" alt=""></a>
+      <a href="assets/proj2/img4.png" class="glightbox" data-gallery="proj2"><img src="assets/proj2/img4.png" loading="lazy" alt=""></a>
+    </div>
+
+    <div class="thumbs" id="thumbs2">
+      <img src="assets/proj2/img1.png" data-index="0">
+      <img src="assets/proj2/img2.png" data-index="1">
+      <img src="assets/proj2/img3.png" data-index="2">
+      <img src="assets/proj2/img4.png" data-index="3">
+    </div>
+
+    <div style="margin-top:18px">
+      <h3>Comparativa Antes / Después</h3>
+      <div class="ba-wrap" id="ba2">
+        <img src="assets/proj2/before.png" alt="Antes">
+        <div class="ba-overlay" id="ba2Overlay"><img src="assets/proj2/after.png" alt="Después"></div>
+        <div class="ba-divider" id="ba2Divider"></div>
+        <div class="ba-handle" id="ba2Handle">⇆</div>
+      </div>
+    </div>
+
+    <a class="cta" href="CV_Edison_Tobar_2025.pdf" target="_blank">Descargar CV</a>
+
   </div>
+
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+const lb2 = GLightbox({ selector: '.glightbox', loop:true });
+document.getElementById('thumbs2').addEventListener('click', e=>{
+  const t = e.target;
+  if(t.tagName!=='IMG') return;
+  lb2.openAt(Number(t.dataset.index||0));
+});
+// before/after
+(function(){
+  const wrap = document.getElementById('ba2'), overlay = document.getElementById('ba2Overlay'), handle = document.getElementById('ba2Handle'), divider = document.getElementById('ba2Divider');
+  if(!wrap) return; let dragging=false;
+  function setPos(clientX){ const rect=wrap.getBoundingClientRect(); let x=clientX-rect.left; if(x<0)x=0; if(x>rect.width)x=rect.width; const pct=(x/rect.width)*100; overlay.style.width=pct+'%'; divider.style.left=pct+'%'; handle.style.left=pct+'%'; }
+  handle.addEventListener('pointerdown', ()=>dragging=true); document.addEventListener('pointerup', ()=>dragging=false); document.addEventListener('pointermove', e=>{ if(dragging) setPos(e.clientX); });
+  wrap.addEventListener('click', e=>setPos(e.clientX));
+  setPos(wrap.getBoundingClientRect().left + wrap.getBoundingClientRect().width/2);
+})();
+</script>
 </body>
 </html>

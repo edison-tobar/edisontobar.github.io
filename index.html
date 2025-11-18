@@ -1,363 +1,202 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Edison Tobar — Portafolio Profesional</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edison Tobar | Portafolio Profesional</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --verde: #00a86b;
-      --verde-oscuro: #00784f;
-      --bg: #f4f6f5;
-      --card: #ffffff;
-      --text: #222;
-      --muted: #666;
-      --nav-height: 56px;
-    }
-    /* Dark variables */
-    .dark {
-      --bg: #0f1112;
-      --card: #101215;
-      --text: #e9eef0;
-      --muted: #a3a9ad;
-    }
+<style>
 
-    /* Respect system preference */
-    @media (prefers-color-scheme: dark) {
-      :root { --bg: #0f1112; --card: #1b1d1f; --text: #f4f4f4; --muted: #a3a9ad; }
-    }
+/* =========================================
+   VARIABLES
+========================================= */
+:root {
+  --verde: #00a86b;
+  --verde-oscuro: #00784f;
+  --fondo: #f4f6f5;
+  --texto: #222;
+  --caja: #ffffff;
+}
 
-    *{box-sizing: border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      scroll-behavior:smooth;
-    }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #0f1112;
+    --texto: #f4f4f4;
+    --caja: #1b1d1f;
+  }
+}
 
-    /* NAV */
-    .nav {
-      position:fixed;
-      top:0; left:0; right:0;
-      height:var(--nav-height);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:6px 18px;
-      background: rgba( var(--card-rgb, 255,255,255) , 0.96);
-      backdrop-filter: blur(6px);
-      z-index:999;
-      border-bottom: 1px solid rgba(0,0,0,0.04);
-    }
-    /* fallback for color in CSS variable */
-    /* compute card rgb for light/dark: */
-    :root { --card-rgb: 255,255,255 }
-    .dark { --card-rgb: 16,18,21 }
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
 
-    .nav .brand { display:flex; align-items:center; gap:10px; font-weight:700; color:var(--text); text-decoration:none }
-    .nav .brand img{ width:36px; height:36px; border-radius:8px; object-fit:cover; border:2px solid rgba(255,255,255,0.05) }
+/* =========================================
+   HEADER
+========================================= */
+header {
+  text-align: center;
+  padding: 80px 20px 40px;
+  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde));
+  color: white;
+}
 
-    .nav .links { display:flex; gap:14px; align-items:center }
-    .nav a.link { text-decoration:none; color:var(--text); font-weight:600; font-size:0.95rem; padding:8px 10px; border-radius:8px }
-    .nav a.link:hover { background: rgba(0,0,0,0.04) }
+header img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+}
 
-    .controls { display:flex; gap:10px; align-items:center }
-    .btn { background:var(--verde); color:white; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:600 }
-    .icon-btn { background:transparent; border:0; cursor:pointer; padding:8px; border-radius:8px }
+header h1 {
+  margin-top: 15px;
+  font-size: 2.4em;
+}
 
-    /* Hamburger */
-    .hamburger { display:none; background:transparent; border:0; cursor:pointer; }
-    .hamburger .bar { width:22px; height:2px; background:var(--text); margin:4px 0; transition: all .2s }
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
+main {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
 
-    /* HEADER */
-    header{
-      padding: calc(var(--nav-height) + 36px) 18px 28px;
-      text-align:center;
-      background: linear-gradient(135deg, var(--verde-oscuro), var(--verde));
-      color:white;
-    }
-    header .foto{ width:130px; height:130px; border-radius:50%; border:4px solid rgba(255,255,255,0.9); object-fit:cover; display:inline-block; box-shadow:0 10px 30px rgba(0,0,0,0.18) }
-    header h1{ margin:12px 0 6px; font-size:1.9rem }
-    header p{ margin:0; opacity:0.95 }
+/* =========================================
+   MASONRY GALLERY (HOME)
+========================================= */
+.gallery {
+  column-count: 3;
+  column-gap: 18px;
+}
 
-    /* MAIN CARD */
-    main{ max-width:1000px; margin:30px auto; padding:12px 18px 80px }
-    .card{ background:var(--card); border-radius:12px; padding:28px; box-shadow: 0 10px 30px rgba(2,6,23,0.06); margin-bottom:22px; transition: transform .18s, box-shadow .18s }
-    .card h2{ margin-top:0; color:var(--verde-oscuro) }
-    .muted{ color:var(--muted) }
+@media (max-width: 900px) {
+  .gallery { column-count: 2; }
+}
 
-    /* Grid for skills/experience */
-    .grid-2{ display:grid; grid-template-columns:1fr 320px; gap:20px }
-    @media (max-width:880px){ .grid-2{ grid-template-columns:1fr; } }
+@media (max-width: 600px) {
+  .gallery { column-count: 1; }
+}
 
-    /* Portfolio grid */
-    .portfolio-container{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:18px; margin-top:14px }
-    .portfolio-card{ border-radius:10px; padding:16px; background: linear-gradient(180deg, rgba(0,0,0,0.02), transparent); border-left:6px solid var(--verde); transition:transform .28s, box-shadow .28s; min-height:130px }
-    .portfolio-card h3{ margin:0 0 8px; font-size:1.05rem; color:var(--verde-oscuro) }
-    .portfolio-card p{ margin:0; color:var(--muted); font-size:0.95rem }
-    .portfolio-card .badges{ margin-top:10px }
-    .badge{ display:inline-block; padding:6px 8px; border-radius:8px; background:var(--verde); color:white; font-size:0.78rem; margin-right:8px }
+.card {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 20px;
+  background: var(--caja);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  transition: transform .3s ease;
+}
 
-    .portfolio-card:hover{ transform: translateY(-8px); box-shadow: 0 18px 40px rgba(2,6,23,0.12) }
+.card:hover {
+  transform: translateY(-5px);
+}
 
-    /* Footer */
-    footer{ text-align:center; padding:30px 0; color:var(--muted) }
+.card h3 {
+  color: var(--verde-oscuro);
+}
 
-    /* Responsive - mobile nav */
-    @media (max-width:720px){
-      .nav .links{ display:none }
-      .hamburger{ display:block }
-      .controls .btn{ display:none }
-    }
+.card a {
+  text-decoration: none;
+  color: var(--verde-oscuro);
+  font-weight: 600;
+}
 
-    /* small tweaks */
-    a{ color:inherit }
-    .small{ font-size:0.9rem }
+/* =========================================
+   BOTÓN
+========================================= */
+.button {
+  background: var(--verde);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 10px;
+}
 
-    /* Focus outlines (accessibility) */
-    a:focus, button:focus { outline:3px solid rgba(0,168,107,0.18); outline-offset:2px; border-radius:8px }
-  </style>
+.button:hover {
+  background: var(--verde-oscuro);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+footer {
+  text-align: center;
+  padding: 25px;
+  font-size: .9em;
+  color: #777;
+}
+
+</style>
 </head>
+
 <body>
 
-  <!-- NAV -->
-  <div class="nav" role="navigation" aria-label="Principal">
-    <a class="brand" href="#home">
-      <img src="foto_edison_tobar.png" alt="Foto Edison">
-      <span>Edison Tobar</span>
-    </a>
+<header>
+  <img src="foto_edison_tobar.png" alt="Foto Edison Tobar">
+  <h1>Edison Javier Tobar Roblero</h1>
+  <p>Msc. Ciberseguridad • Power Platform • Automatización • Ethical Hacking</p>
+</header>
 
-    <div class="links" id="navLinks">
-      <a class="link" href="#perfil">Perfil</a>
-      <a class="link" href="#formacion">Formación</a>
-      <a class="link" href="#certificaciones">Certificaciones</a>
-      <a class="link" href="#habilidades">Habilidades</a>
-      <a class="link" href="#experiencia">Experiencia</a>
-      <a class="link" href="#portafolio">Portafolio</a>
-      <a class="link" href="#contacto">Contacto</a>
-    </div>
+<main>
 
-    <div class="controls">
-      <button id="darkToggle" class="icon-btn" title="Alternar modo oscuro" aria-pressed="false">🌓</button>
-      <a class="btn" href="CV_Edison_Tobar_2025.pdf" target="_blank" rel="noopener">Descargar CV</a>
+<h2 style="color:var(--verde-oscuro);">Portafolio Destacado</h2>
 
-      <button class="hamburger" id="hamb" aria-label="Abrir menú">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
-    </div>
+<div class="gallery">
+
+  <div class="card">
+    <h3>🔐 Sistema de Tickets</h3>
+    <p>Power Platform • ISO 27001 • Gestión de incidencias</p>
+    <a href="project-1.html">Ver proyecto →</a>
   </div>
 
-  <!-- HEADER -->
-  <header id="home" role="banner">
-    <img class="foto" src="foto_edison_tobar.png" alt="Foto Edison Tobar" />
-    <h1>Edison Javier Tobar Roblero</h1>
-    <p class="small">MSc. Ciberseguridad · EHCA · CEHPC · PMJ · Especialista en Automatización</p>
-  </header>
+  <div class="card">
+    <h3>⚡ Automatización Empresarial</h3>
+    <p>Power Apps • Automate • BI corporativo</p>
+    <a href="project-2.html">Ver proyecto →</a>
+  </div>
 
-  <!-- MAIN -->
-  <main>
-    <!-- Perfil -->
-    <section id="perfil" class="card" aria-labelledby="perfil-title">
-      <h2 id="perfil-title">Perfil Profesional</h2>
-      <p class="small">Profesional con experiencia en ciberseguridad, automatización de procesos y desarrollo de soluciones empresariales. Implementación de controles bajo ISO 27001, soluciones Power Platform y análisis de datos para la toma de decisiones.</p>
-    </section>
+  <div class="card">
+    <h3>🛡 Cableado Estructurado Planta</h3>
+    <p>Implementación física y lógica completa</p>
+    <a href="project-3.html">Ver proyecto →</a>
+  </div>
 
-    <!-- Formación + Contacto lateral -->
-    <section class="card grid-2" aria-labelledby="formacion-title">
-      <div>
-        <h2 id="formacion-title">Formación Académica</h2>
-        <ul class="small">
-          <li>Maestría en Ciberseguridad — U. Hemisferios - IMF</li>
-          <li>Ingeniería en Informática — UTE</li>
-          <li>Tecnólogo en Análisis de Sistemas — EPN</li>
-        </ul>
-        <h3 style="margin-top:18px">Certificaciones</h3>
-        <ul class="small">
-          <li>EHCA — Ethical Hacking Certified Associate</li>
-          <li>CEHPC — Ethical Hacking Professional Certification</li>
-          <li>CAPC — Cybersecurity Awareness Professional</li>
-          <li>Power Platform Consultant — AKROSS</li>
-        </ul>
-      </div>
+  <div class="card">
+    <h3>📄 Sistema de Flujos con Firmas Electrónicas</h3>
+    <p>Cumplimiento normativo • Power Platform</p>
+    <a href="project-4.html">Ver proyecto →</a>
+  </div>
 
-      <aside style="padding-left:18px">
-        <h2>Contacto</h2>
-        <p class="small">📧 <a href="mailto:etobarroblero@gmail.com">etobarroblero@gmail.com</a><br>📱 0999592340<br>🔗 <a href="https://www.linkedin.com/in/edisontobar" target="_blank" rel="noopener">LinkedIn /edisontobar</a></p>
-        <div style="margin-top:12px"><a class="btn" href="CV_Edison_Tobar_2025.pdf" target="_blank" rel="noopener">Descargar CV</a></div>
-      </aside>
-    </section>
+</div>
 
-    <!-- Habilidades -->
-    <section id="habilidades" class="card">
-      <h2>Habilidades Técnicas</h2>
-      <div style="display:flex; gap:16px; flex-wrap:wrap">
-        <div style="flex:1; min-width:200px">
-          <h4 class="small">Plataformas</h4>
-          <p class="small">Power Apps, Power Automate, Power BI</p>
-        </div>
-        <div style="flex:1; min-width:200px">
-          <h4 class="small">Lenguajes / DB</h4>
-          <p class="small">Python, C++, Visual Basic — Oracle, SQL Server, DB2</p>
-        </div>
-        <div style="flex:1; min-width:200px">
-          <h4 class="small">Seguridad</h4>
-          <p class="small">Metasploit, Nmap, Nessus, Hydra, Sqlmap, pentesting</p>
-        </div>
-      </div>
-    </section>
+<section style="margin-top:40px;">
+  <h2 style="color:var(--verde-oscuro);">Contacto</h2>
+  <p>
+    📧 <a href="mailto:etobarroblero@gmail.com">etobarroblero@gmail.com</a><br>
+    📱 0999592340<br>
+    🔗 <a href="https://www.linkedin.com/in/edisontobar" target="_blank">LinkedIn /edisontobar</a><br><br>
+    <a href="CV_Edison_Tobar_2025.pdf" class="button" target="_blank">Descargar CV</a>
+  </p>
+</section>
 
-    <!-- Experiencia -->
-    <section id="experiencia" class="card">
-      <h2>Experiencia Profesional</h2>
-      <ul class="small">
-        <li><strong>Información Tecnológica del Ecuador</strong> — 6 años. Administración de servidores, telefonía IP, ERP, soporte y automatización.</li>
-        <li><strong>Servicios Cybercell</strong> — 2.5 años. Redes, seguridad informática, soporte y administración de bases de datos.</li>
-      </ul>
-    </section>
+</main>
 
-    <!-- Portafolio -->
-    <section id="portafolio" class="card" aria-labelledby="portafolio-title">
-      <h2 id="portafolio-title">Portafolio de Proyectos</h2>
-      <p class="small muted">Proyectos representativos en ciberseguridad, automatización y optimización de procesos.</p>
+<footer>
+  © 2025 Edison Tobar — Portafolio Profesional
+</footer>
 
-      <div class="portfolio-container" id="portfolioGrid">
-        <!-- Card 1 -->
-        <a class="portfolio-card" href="project-1.html" aria-label="Proyecto Sistema de Tickets — ver detalles">
-          <h3>🔐 Sistema de Tickets</h3>
-          <p>Desarrollo e implementación de sistema corporativo de tickets basado en Power Platform para gestión de incidencias y auditoría.</p>
-          <div class="badges">
-            <span class="badge">Power Apps</span><span class="badge">ISO 27001</span>
-          </div>
-        </a>
-
-        <!-- Card 2 -->
-        <a class="portfolio-card" href="project-2.html" aria-label="Proyecto Automatización — ver detalles">
-          <h3>⚡ Automatización Empresarial</h3>
-          <p>Automatización de procesos críticos con Power Automate + Power BI para reporting y reducción de tiempos.</p>
-          <div class="badges"><span class="badge">Power Automate</span><span class="badge">Power BI</span></div>
-        </a>
-
-        <!-- Card 3 -->
-        <a class="portfolio-card" href="project-3.html" aria-label="Proyecto Cableado estructurado — ver detalles">
-          <h3>🛡 Cableado estructurado</h3>
-          <p>Coordinación e implementación de cableado estructurado en planta de producción, asegurando continuidad y redundancia.</p>
-          <div class="badges"><span class="badge">Infraestructura</span></div>
-        </a>
-
-        <!-- Card 4 -->
-        <a class="portfolio-card" href="project-4.html" aria-label="Proyecto Flujos con firmas electrónicas — ver detalles">
-          <h3>📊 Flujos con firmas electrónicas</h3>
-          <p>Implementación de flujos internos con firmas electrónicas y control documental bajo estándares nacionales.</p>
-          <div class="badges"><span class="badge">SQL</span><span class="badge">Oracle</span></div>
-        </a>
-      </div>
-
-    </section>
-
-  </main>
-
-  <footer>
-    © 2025 Edison Javier Tobar Roblero — Portafolio Profesional
-  </footer>
-
-  <!-- GSAP CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <script>
-    // ----- Dark mode toggle -----
-    const darkToggle = document.getElementById('darkToggle');
-    const html = document.documentElement;
-
-    // Load stored preference
-    const stored = localStorage.getItem('site-theme');
-    if(stored === 'dark'){ html.classList.add('dark'); darkToggle.setAttribute('aria-pressed','true') }
-
-    darkToggle.addEventListener('click', () => {
-      const isDark = html.classList.toggle('dark');
-      darkToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-      localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
-    });
-
-    // ----- Mobile menu -----
-    const hamb = document.getElementById('hamb');
-    const navLinks = document.getElementById('navLinks');
-    hamb && hamb.addEventListener('click', () => {
-      const shown = navLinks.style.display === 'flex';
-      navLinks.style.display = shown ? '' : 'flex';
-      navLinks.style.flexDirection = 'column';
-      navLinks.style.position = shown ? '' : 'absolute';
-      navLinks.style.top = shown ? '' : '56px';
-      navLinks.style.right = shown ? '' : '14px';
-      navLinks.style.background = shown ? '' : 'var(--card)';
-      navLinks.style.padding = shown ? '' : '10px';
-      navLinks.style.borderRadius = shown ? '' : '8px';
-      navLinks.style.boxShadow = shown ? '' : '0 10px 30px rgba(2,6,23,0.12)';
-    });
-
-    // ----- Splash hide (reliable) -----
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        const s = document.getElementById('splash');
-        if(!s) return;
-        s.style.opacity = 0;
-        s.style.pointerEvents = 'none';
-        setTimeout(()=> s.remove(), 900);
-      }, 900);
-    });
-
-    // ----- GSAP Animations -----
-    function animateEntry(){
-      // header
-      gsap.from("header .foto", { y:-40, opacity:0, duration:0.9, ease:"power3.out" });
-      gsap.from("header h1", { y:10, opacity:0, duration:0.9, delay:0.15, ease:"power3.out" });
-      gsap.from("header p", { y:10, opacity:0, duration:0.9, delay:0.25, ease:"power3.out" });
-
-      // cards fade in sequentially
-      gsap.utils.toArray('main .card').forEach((el, i) => {
-        gsap.from(el, { y:18, opacity:0, duration:0.8, delay:0.35 + i*0.12, ease:"power3.out" });
-      });
-
-      // portfolio items pop
-      gsap.utils.toArray('.portfolio-card').forEach((el, i) => {
-        gsap.from(el, { y:14, opacity:0, scale:0.98, duration:0.7, delay:1.0 + i*0.08, ease:"back.out(0.4)" });
-      });
-    }
-
-    // Intersection-based subtle reveal on scroll (for future items)
-    function setupRevealOnScroll(){
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            gsap.to(entry.target, { y:0, opacity:1, duration:0.6, ease:"power3.out" });
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-
-      document.querySelectorAll('.portfolio-card, .card').forEach(el => {
-        if(window.innerWidth < 880) { // mobile: ensure visible
-          el.style.opacity = 1;
-          el.style.transform = 'none';
-        } else {
-          el.style.opacity = 0; el.style.transform = 'translateY(18px)';
-          obs.observe(el);
-        }
-      });
-    }
-
-    // Start animations after load
-    window.addEventListener('load', () => {
-      animateEntry();
-      setupRevealOnScroll();
-    });
-  </script>
 </body>
 </html>
