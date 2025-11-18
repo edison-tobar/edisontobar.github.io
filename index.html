@@ -15,21 +15,21 @@
   --sidebar-width: 260px;
   --verde: #00a86b;
   --verde-oscuro: #00784f;
-  --bg: #0f1112;
-  --card: #141517;
-  --text: #eef1f2;
-  --muted: #9aa0a3;
-  --glass: rgba(255,255,255,0.08);
-  --radius: 14px;
-}
-
-/* Light Mode */
-body:not(.dark){
   --bg: #f4f6f5;
   --card: #ffffff;
   --text: #1b1b1b;
   --muted: #6c6f73;
   --glass: rgba(255,255,255,0.6);
+  --radius: 14px;
+}
+
+/* Dark Mode */
+body.dark{
+  --bg:#0f1112;
+  --card:#141517;
+  --text:#eef1f2;
+  --muted:#9aa0a3;
+  --glass:rgba(255,255,255,0.08);
 }
 
 body{
@@ -39,24 +39,21 @@ body{
   color:var(--text);
   transition:background .3s,color .3s;
 }
-
 *{box-sizing:border-box}
 
-/* ========== SIDEBAR ========== */
+/* SIDEBAR */
 .sidebar{
-  position:fixed; left:0; top:0; bottom:0;
+  position:fixed;left:0;top:0;bottom:0;
   width:var(--sidebar-width);
   padding:28px 18px;
   background:rgba(255,255,255,0.04);
   backdrop-filter:blur(8px);
-  border-right:1px solid rgba(255,255,255,0.05);
-  display:flex; flex-direction:column;
+  border-right:1px solid rgba(0,0,0,0.05);
+  display:flex;flex-direction:column;
   z-index:1000;
 }
 .sidebar img{
-  width:58px; height:58px;
-  border-radius:12px;
-  object-fit:cover;
+  width:58px;height:58px;border-radius:12px;object-fit:cover;
 }
 .brand{display:flex;gap:12px;color:var(--text);text-decoration:none}
 .brand .name{font-weight:700}
@@ -64,23 +61,21 @@ body{
 
 .side-nav{margin-top:20px;display:flex;flex-direction:column;gap:8px}
 .side-nav a{
-  color:var(--text); text-decoration:none;
-  padding:10px 12px; border-radius:10px;
+  color:var(--text);text-decoration:none;
+  padding:10px 12px;border-radius:10px;
   font-weight:600;
 }
-.side-nav a:hover{
-  background:rgba(0,168,107,.12); color:var(--verde)
-}
+.side-nav a:hover{background:rgba(0,168,107,.12);color:var(--verde)}
 
 .cv-btn{
   margin-top:auto;
   background:var(--verde);
-  color:white; padding:12px;
-  border-radius:10px; text-align:center;
-  text-decoration:none; font-weight:600;
+  color:white;padding:12px;
+  border-radius:10px;text-align:center;
+  text-decoration:none;font-weight:600;
 }
 
-/* ========== CONTENT ========== */
+/* CONTENT */
 .content{
   margin-left:calc(var(--sidebar-width) + 20px);
   padding:20px;
@@ -91,9 +86,8 @@ body{
 }
 
 /* ============================================
-   HERO MEJORADO PREMIUM
+   HERO PREMIUM
 ============================================ */
-
 .hero{
   position:relative;
   margin-bottom:30px;
@@ -105,33 +99,55 @@ body{
   overflow:visible;
 }
 
-/* FOTO FLOTANTE PREMIUM GLASS */
+/* FOTO GLASS */
 .hero-photo{
-  width:170px; height:170px;
+  width:170px;height:170px;
   border-radius:50%;
   object-fit:cover;
   position:absolute;
-  top:-90px; left:50%;
+  top:-90px;left:50%;
   transform:translateX(-50%);
   z-index:20;
-
-  /* EFECTO GLASS CON BORDE */
   border:5px solid rgba(255,255,255,0.9);
   background:var(--card);
   box-shadow:
       0 10px 25px rgba(0,0,0,0.30),
       0 0 25px rgba(0,255,150,0.25);
-  
   animation:float 4s ease-in-out infinite;
 }
-
-/* ANIMACIÓN SUAVE FLOTA */
 @keyframes float{
   0%{ transform:translateX(-50%) translateY(0) }
   50%{ transform:translateX(-50%) translateY(-10px) }
   100%{ transform:translateX(-50%) translateY(0) }
 }
+.hero h1{font-size:2.2rem;margin-top:80px;color:white}
+.hero p{color:white;opacity:.9;font-size:1rem}
+
+@media(max-width:480px){
+  .hero{padding-top:110px}
+  .hero-photo{width:130px;height:130px;top:-70px}
+  .hero h1{font-size:1.6rem;margin-top:65px}
+}
+
+/* CARDS */
+.card{
+  background:var(--card);
+  border-radius:12px;
+  padding:18px;
+  box-shadow:0 8px 26px rgba(2,6,23,0.05);
+  margin-bottom:20px;
+}
+h2{color:var(--verde-oscuro);margin:8px 0 14px}
+
+.two-col{display:grid;grid-template-columns:1fr 320px;gap:18px}
+@media(max-width:900px){.two-col{grid-template-columns:1fr}}
+
+ul{margin:0;padding-left:18px}
+li{margin-bottom:8px}
+.muted{color:var(--muted)}
+</style>
 </head>
+
 <body>
 
 <!-- SIDEBAR -->
@@ -160,13 +176,12 @@ body{
 <!-- CONTENIDO -->
 <main class="content">
 
-<!-- HERO PREMIUM -->
+<!-- HERO -->
 <section class="hero">
   <img class="hero-photo" src="foto_edison_tobar.png" alt="Edison Tobar">
   <h1>Edison Javier Tobar Roblero</h1>
   <p>MSc. Ciberseguridad • Power Platform • Automatización • Infraestructura IT</p>
 </section>
-
 <!-- PERFIL -->
 <section id="perfil" class="card">
   <h2>Perfil Profesional</h2>
@@ -206,7 +221,7 @@ body{
       📧 <a href="mailto:etobarroblero@gmail.com">etobarroblero@gmail.com</a><br>
       📱 0999592340<br>
       🔗 <a href="https://www.linkedin.com/in/edisontobar" target="_blank">LinkedIn /edisontobar</a><br><br>
-      📄 <a href="CV_Edison_Tobar_2025.pdf" class="cv-btn">Descargar CV</a>
+      📄 <a href="CV_Edison_Tobar_2025.pdf" class="cv-btn" target="_blank">Descargar CV</a>
     </p>
   </aside>
 
@@ -281,6 +296,7 @@ body{
 
   </div>
 </section>
+
 </main>
 
 <!-- FOOTER -->
@@ -292,108 +308,53 @@ body{
      SCRIPTS
 ================================ -->
 <script>
-/* ===============================
-   1. MODO CLARO / OSCURO
-================================ */
-function applyDarkMode(isDark) {
-  if(isDark){
-    document.body.classList.add("dark");
-    localStorage.setItem("darkMode","on");
-  } else {
-    document.body.classList.remove("dark");
-    localStorage.setItem("darkMode","off");
-  }
+/* Dark Mode */
+function applyDarkMode(on){
+  if(on){ document.body.classList.add("dark"); localStorage.setItem("darkMode","on"); }
+  else{ document.body.classList.remove("dark"); localStorage.setItem("darkMode","off"); }
 }
+if(localStorage.getItem("darkMode")==="on"){ applyDarkMode(true); }
 
-// cargar preferencia
-if(localStorage.getItem("darkMode") === "on") {
-  applyDarkMode(true);
-}
-
-// botón móvil
-document.getElementById("darkToggleMobile")?.addEventListener("click", () => {
-  applyDarkMode(!document.body.classList.contains("dark"));
-});
-
-/* ===============================
-   2. MENU MÓVIL (placeholder)
-================================ */
-document.getElementById("mobileMenuBtn")?.addEventListener("click",()=>{
-  alert("Menú móvil deslizante estará disponible en la siguiente actualización.");
-});
-
-/* ===============================
-   3. MASONRY DINÁMICO
-================================ */
+/* Masonry */
 function masonry(){
-  const grid = document.getElementById("masonry");
+  const grid=document.getElementById("masonry");
   if(!grid) return;
-
-  const items = [...grid.children];
-
-  let colCount = window.innerWidth < 600 ? 1 :
-                 window.innerWidth < 900 ? 2 :
-                 window.innerWidth < 1300 ? 3 : 4;
-
-  let columns = Array.from({length: colCount}, ()=>[]);
-
-  items.forEach((item,i)=> columns[i % colCount].push(item));
-
-  grid.innerHTML = "";
-  columns.forEach(col=>{
-    let colDiv = document.createElement("div");
-    colDiv.className = "mason-col";
-    col.forEach(it=> colDiv.appendChild(it));
-    grid.appendChild(colDiv);
+  const items=[...grid.children];
+  let cols=window.innerWidth<600?1:window.innerWidth<900?2:window.innerWidth<1300?3:4;
+  let arr=Array.from({length:cols},()=>[]);
+  items.forEach((it,i)=>arr[i%cols].push(it));
+  grid.innerHTML="";
+  arr.forEach(col=>{
+    let div=document.createElement("div");
+    div.className="mason-col";
+    col.forEach(it=>div.appendChild(it));
+    grid.appendChild(div);
   });
 }
-
-window.addEventListener("load", masonry);
-window.addEventListener("resize", masonry);
+window.addEventListener("load",masonry);
+window.addEventListener("resize",masonry);
 </script>
 
-<!-- ===============================
-     MASONRY CSS EXTRA
-================================ -->
+<!-- Masonry CSS -->
 <style>
-.masonry{
-  display:flex;
-  gap:18px;
-}
-.mason-col{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-}
-
-/* TARJETAS DEL PORTAFOLIO */
-.masonry-item{
-  text-decoration:none;
-  color:inherit;
-}
+.masonry{display:flex;gap:18px;}
+.mason-col{flex:1;display:flex;flex-direction:column;gap:18px}
 .p-card{
   background:var(--card);
   border-left:6px solid var(--verde);
-  padding:16px;
-  border-radius:12px;
+  padding:16px;border-radius:12px;
   box-shadow:0 6px 20px rgba(0,0,0,0.06);
-  transition:transform .25s, box-shadow .25s;
+  transition:.25s;
 }
 .p-card:hover{
   transform:translateY(-6px);
   box-shadow:0 10px 26px rgba(0,0,0,0.12);
 }
-
 .badge{
-  display:inline-block;
-  background:var(--verde);
-  color:white;
-  font-size:0.75rem;
-  padding:4px 10px;
-  border-radius:8px;
-  margin-right:4px;
-  margin-top:8px;
+  display:inline-block;background:var(--verde);
+  color:white;font-size:.75rem;
+  padding:4px 10px;border-radius:8px;
+  margin-right:4px;margin-top:8px;
 }
 </style>
 
