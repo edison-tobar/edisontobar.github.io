@@ -171,7 +171,12 @@ h2{margin:8px 0 12px;color:var(--verde-oscuro);}
 /* Foto flotante */
 .photo-wrapper{
   position:absolute;
-  top: -20px !important;   /* Antes: -70px → Ajustado para que se vea completo */
+  .photo-wrapper{ top:-20px; }
+
+@media(max-width:480px){
+  .photo-wrapper{ top:-10px; }
+}
+
   left:50%;
   transform:translateX(-50%);
   width:200px; height:200px;
