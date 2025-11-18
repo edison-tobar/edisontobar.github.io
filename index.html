@@ -1,51 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edison Tobar | Portafolio Profesional</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edison Tobar | Portafolio Profesional</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<style>
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
 
-/* =========================================
-   VARIABLES
-========================================= */
+  <style>
+/* ============================================================
+    VARIABLES GENERALES
+============================================================ */
 :root {
   --verde: #00a86b;
   --verde-oscuro: #00784f;
   --fondo: #f4f6f5;
-  --texto: #222;
+  --texto: #1a1a1a;
   --caja: #ffffff;
 }
 
+/* ---------------- MODO OSCURO AUTOMÁTICO --------------- */
 @media (prefers-color-scheme: dark) {
   :root {
     --fondo: #0f1112;
-    --texto: #f4f4f4;
-    --caja: #1b1d1f;
+    --texto: #f5f5f5;
+    --caja: #191b1d;
   }
 }
 
-body {
-  font-family: "Inter", sans-serif;
-  background: var(--fondo);
-  color: var(--texto);
-  margin: 0;
-  padding: 0;
-  scroll-behavior: smooth;
+/* ---------------- MODO OSCURO MANUAL ------------------ */
+body.dark {
+  --fondo: #0f1112;
+  --texto: #f5f5f5;
+  --caja: #191b1d;
 }
 
-/* =========================================
-   HEADER
-========================================= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  transition: background .3s, color .3s;
+}
+
+/* ============================================================
+    NAVBAR RESPONSIVE
+============================================================ */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--caja);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+nav .logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+}
+
+nav .links {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: var(--texto);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Botón modo oscuro */
+.theme-toggle {
+  cursor: pointer;
+  font-size: 1.6rem;
+  color: var(--verde-oscuro);
+}
+
+/* Menu móvil */
+.menu-btn {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 850px) {
+  nav .links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    right: 0;
+    background: var(--caja);
+    padding: 20px;
+    width: 60%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  nav .links.open {
+    display: flex;
+  }
+  .menu-btn {
+    display: block;
+  }
+}
+
+/* ============================================================
+    HEADER
+============================================================ */
 header {
+  padding: 120px 20px 60px;
   text-align: center;
-  padding: 80px 20px 40px;
   background: linear-gradient(135deg, var(--verde-oscuro), var(--verde));
   color: white;
+  margin-top: 50px;
 }
 
 header img {
@@ -53,142 +131,174 @@ header img {
   height: 140px;
   border-radius: 50%;
   border: 4px solid white;
-  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+  box-shadow: 0 0 14px rgba(0,0,0,0.3);
 }
 
 header h1 {
   margin-top: 15px;
-  font-size: 2.4em;
+  font-size: 2rem;
 }
 
-/* =========================================
-   CONTENEDOR PRINCIPAL
-========================================= */
+/* ============================================================
+    CONTENIDO PRINCIPAL
+============================================================ */
 main {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 20px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 25px;
 }
 
-/* =========================================
-   MASONRY GALLERY (HOME)
-========================================= */
-.gallery {
-  column-count: 3;
-  column-gap: 18px;
+section {
+  margin-bottom: 50px;
 }
 
-@media (max-width: 900px) {
-  .gallery { column-count: 2; }
+/* ============================================================
+    MASONRY GALLERY (PORTAFOLIO)
+============================================================ */
+.portfolio-grid {
+  column-count: 1;
+  column-gap: 20px;
 }
 
-@media (max-width: 600px) {
-  .gallery { column-count: 1; }
+@media (min-width: 600px) {
+  .portfolio-grid { column-count: 2; }
+}
+@media (min-width: 1000px) {
+  .portfolio-grid { column-count: 3; }
 }
 
-.card {
+.project-card {
+  background: var(--caja);
+  margin-bottom: 20px;
   display: inline-block;
   width: 100%;
-  margin: 0 0 20px;
-  background: var(--caja);
+  padding: 18px;
   border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-  transition: transform .3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  transition: transform .25s;
+  border-left: 6px solid var(--verde);
 }
 
-.card:hover {
-  transform: translateY(-5px);
+.project-card:hover {
+  transform: translateY(-6px);
 }
 
-.card h3 {
+.project-card h3 {
+  margin: 10px 0;
+  font-size: 1.2rem;
   color: var(--verde-oscuro);
 }
 
-.card a {
-  text-decoration: none;
-  color: var(--verde-oscuro);
-  font-weight: 600;
-}
-
-/* =========================================
-   BOTÓN
-========================================= */
-.button {
+.project-card .btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 18px;
   background: var(--verde);
   color: white;
-  padding: 12px 22px;
-  border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  display: inline-block;
-  margin-top: 10px;
+  border-radius: 8px;
 }
 
-.button:hover {
+.project-card .btn:hover {
   background: var(--verde-oscuro);
 }
 
-/* =========================================
-   FOOTER
-========================================= */
+/* ============================================================
+    FOOTER
+============================================================ */
 footer {
   text-align: center;
   padding: 25px;
-  font-size: .9em;
-  color: #777;
+  opacity: .7;
+  font-size: .9rem;
 }
-
-</style>
+  </style>
 </head>
 
 <body>
 
+<!-- ============================================================
+    NAVBAR
+============================================================ -->
+<nav>
+  <div class="logo">EdisonTobar</div>
+
+  <div class="links" id="links">
+    <a href="#perfil">Perfil</a>
+    <a href="#formacion">Formación</a>
+    <a href="#certificaciones">Certificaciones</a>
+    <a href="#habilidades">Habilidades</a>
+    <a href="#portafolio">Portafolio</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+
+  <i class="ri-moon-clear-fill theme-toggle" id="toggleTheme"></i>
+  <i class="ri-menu-line menu-btn" id="menuBtn"></i>
+</nav>
+
+<!-- ============================================================
+    HEADER
+============================================================ -->
 <header>
   <img src="foto_edison_tobar.png" alt="Foto Edison Tobar">
   <h1>Edison Javier Tobar Roblero</h1>
-  <p>Msc. Ciberseguridad • Power Platform • Automatización • Ethical Hacking</p>
+  <p>MSc. Ciberseguridad | EHCA | CEHPC | Pentester Jr | Power Platform</p>
 </header>
 
+<!-- ============================================================
+    CONTENIDO
+============================================================ -->
 <main>
 
-<h2 style="color:var(--verde-oscuro);">Portafolio Destacado</h2>
+<section id="perfil">
+  <h2>Perfil Profesional</h2>
+  <p>
+    Especialista en ciberseguridad, automatización con Power Platform, infraestructura IT,
+    análisis de datos y consultoría tecnológica. Experiencia en empresas farmacéuticas,
+    corporativas y de servicios críticos.
+  </p>
+</section>
 
-<div class="gallery">
+<section id="portafolio">
+  <h2>Portafolio de Proyectos</h2>
 
-  <div class="card">
-    <h3>🔐 Sistema de Tickets</h3>
-    <p>Power Platform • ISO 27001 • Gestión de incidencias</p>
-    <a href="project-1.html">Ver proyecto →</a>
+  <div class="portfolio-grid">
+
+    <div class="project-card">
+      <h3>🔐 Sistema de Tickets</h3>
+      <p>Solución empresarial completa con Power Platform.</p>
+      <a href="project-1.html" class="btn">Ver proyecto</a>
+    </div>
+
+    <div class="project-card">
+      <h3>⚡ Automatización Empresarial</h3>
+      <p>Apps, flujos y dashboards corporativos.</p>
+      <a href="project-2.html" class="btn">Ver proyecto</a>
+    </div>
+
+    <div class="project-card">
+      <h3>🛡 Cableado Estructurado</h3>
+      <p>Proyecto de planta farmacéutica con documentación completa.</p>
+      <a href="project-3.html" class="btn">Ver proyecto</a>
+    </div>
+
+    <div class="project-card">
+      <h3>📄 Flujos con Firmas Electrónicas</h3>
+      <p>Gestión documental con cumplimiento legal.</p>
+      <a href="project-4.html" class="btn">Ver proyecto</a>
+    </div>
+
   </div>
 
-  <div class="card">
-    <h3>⚡ Automatización Empresarial</h3>
-    <p>Power Apps • Automate • BI corporativo</p>
-    <a href="project-2.html">Ver proyecto →</a>
-  </div>
+</section>
 
-  <div class="card">
-    <h3>🛡 Cableado Estructurado Planta</h3>
-    <p>Implementación física y lógica completa</p>
-    <a href="project-3.html">Ver proyecto →</a>
-  </div>
-
-  <div class="card">
-    <h3>📄 Sistema de Flujos con Firmas Electrónicas</h3>
-    <p>Cumplimiento normativo • Power Platform</p>
-    <a href="project-4.html">Ver proyecto →</a>
-  </div>
-
-</div>
-
-<section style="margin-top:40px;">
-  <h2 style="color:var(--verde-oscuro);">Contacto</h2>
+<section id="contacto">
+  <h2>Contacto</h2>
   <p>
     📧 <a href="mailto:etobarroblero@gmail.com">etobarroblero@gmail.com</a><br>
-    📱 0999592340<br>
-    🔗 <a href="https://www.linkedin.com/in/edisontobar" target="_blank">LinkedIn /edisontobar</a><br><br>
-    <a href="CV_Edison_Tobar_2025.pdf" class="button" target="_blank">Descargar CV</a>
+    📱 0999592340<br><br>
+    📄 <a href="CV_Edison_Tobar_2025.pdf" class="btn">Descargar CV</a>
   </p>
 </section>
 
@@ -197,6 +307,26 @@ footer {
 <footer>
   © 2025 Edison Tobar — Portafolio Profesional
 </footer>
+
+<script>
+/* ============================================================
+    TOGGLE DE MODO OSCURO
+============================================================ */
+const toggleTheme = document.getElementById("toggleTheme");
+toggleTheme.onclick = () => {
+  document.body.classList.toggle("dark");
+};
+
+/* ============================================================
+    MENÚ RESPONSIVE
+============================================================ */
+const menuBtn = document.getElementById("menuBtn");
+const links = document.getElementById("links");
+
+menuBtn.onclick = () => {
+  links.classList.toggle("open");
+};
+</script>
 
 </body>
 </html>
