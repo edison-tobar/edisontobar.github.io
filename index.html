@@ -1,375 +1,432 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Edison Javier Tobar Roblero</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Edison Tobar — Portafolio Profesional</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* --------------------------- */
-/*         VARIABLES           */
-/* --------------------------- */
+  /* ---------- VARIABLES ---------- */
+  :root{
+    --verde: #00a86b;
+    --verde-oscuro: #00784f;
+    --bg-light: #f4f6f5;
+    --card-light: #ffffff;
+    --text-light: #111;
+    --muted-light: #6c6f73;
 
-:root {
-  --sidebar-bg: #0d0d0d;
-  --content-bg: #111;
-  --text-color: #fff;
-  --accent: #00cc88;
-  --card-bg: #1a1a1a;
-  --hero-gradient: linear-gradient(135deg, #05d585, #00a36c);
-}
+    --bg-dark: #0f1112;
+    --card-dark: #141517;
+    --text-dark: #eef1f2;
+    --muted-dark: #9aa0a3;
 
-.light {
-  --sidebar-bg: #f0f0f0;
-  --content-bg: #ffffff;
-  --text-color: #111;
-  --accent: #00a36c;
-  --card-bg: #f6f6f6;
-  --hero-gradient: linear-gradient(135deg, #BBF5D2, #7CE2B2);
-}
+    --sidebar-w: 260px;
+    --radius: 12px;
+  }
 
-/* --------------------------- */
-/*      GLOBAL STYLE           */
-/* --------------------------- */
+  /* base (uses light by default, body.dark toggles dark) */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    background:var(--bg-light);
+    color:var(--text-light);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    transition:background .28s,color .28s;
+  }
+  body.dark{
+    background:var(--bg-dark);
+    color:var(--text-dark);
+  }
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--content-bg);
-  color: var(--text-color);
-  display: flex;
-  overflow-x: hidden;
-}
+  /* compute card/background colors */
+  .card, .sidebar, .topnav, .p-card { background: var(--card-light); }
+  body.dark .card, body.dark .sidebar, body.dark .topnav, body.dark .p-card { background: var(--card-dark); }
+  .muted{ color:var(--muted-light) }
+  body.dark .muted{ color:var(--muted-dark) }
 
-/* --------------------------- */
-/*        SIDEBAR              */
-/* --------------------------- */
+  /* ---------- LAYOUT ---------- */
+  .sidebar{
+    position:fixed; left:0; top:0; bottom:0;
+    width:var(--sidebar-w);
+    padding:26px 18px;
+    display:flex; flex-direction:column; gap:14px;
+    border-right:1px solid rgba(0,0,0,0.06);
+    z-index:1100;
+  }
+  .brand{ display:flex; gap:12px; align-items:center; text-decoration:none; color:inherit}
+  .brand img{ width:56px; height:56px; border-radius:10px; object-fit:cover }
+  .brand .name{ font-weight:700 }
+  .brand .role{ font-size:0.85rem; color:var(--muted-light) }
+  body.dark .brand .role{ color:var(--muted-dark) }
 
-.sidebar {
-  width: 240px;
-  background: var(--sidebar-bg);
-  height: 100vh;
-  padding: 20px;
-  position: fixed;
-  top: 0; left: 0;
-  color: var(--text-color);
-  display: flex;
-  flex-direction: column;
-}
+  nav.side-nav{ margin-top:10px; display:flex; flex-direction:column; gap:8px }
+  nav.side-nav a{ padding:10px 12px; border-radius:10px; color:inherit; font-weight:600; text-decoration:none }
+  nav.side-nav a:hover{ background:rgba(0,168,107,0.08); color:var(--verde-oscuro) }
 
-.sidebar img {
-  width: 65px;
-  height: 65px;
-  border-radius: 10px;
-  object-fit: cover;
-}
+  .cv-btn{ margin-top:auto; background:var(--verde); color:white; padding:10px 12px; border-radius:10px; text-align:center; font-weight:700; text-decoration:none }
 
-.sidebar h2 {
-  font-size: 18px;
-  margin: 10px 0 0;
-}
+  /* topnav mobile */
+  .topnav{ display:none }
+  @media(max-width:800px){
+    .sidebar{ display:none }
+    .topnav{
+      display:flex; position:fixed; top:0; left:0; right:0; height:58px;
+      align-items:center; gap:12px; padding:0 14px; z-index:1099; border-bottom:1px solid rgba(0,0,0,0.06);
+    }
+  }
 
-.sidebar p {
-  margin: 0;
-  font-size: 13px;
-  opacity: .7;
-}
+  main.content{
+    margin-left: calc(var(--sidebar-w) + 32px);
+    padding:28px 22px 80px;
+  }
+  @media(max-width:1000px){
+    main.content{ margin-left: 90px }
+  }
+  @media(max-width:800px){
+    main.content{ margin-left: 0; padding-top:84px }
+  }
 
-.nav-link {
-  margin-top: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
+  /* ---------- HERO PREMIUM (FIXED) ---------- */
+  .hero{
+    position:relative;
+    border-radius:18px;
+    padding:120px 26px 46px;
+    color:white;
+    overflow: visible; /* IMPORTANT: allow photo overflow */
+    background: linear-gradient(135deg, var(--verde-oscuro), var(--verde));
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  }
 
-.nav-link a {
-  text-decoration: none;
-  color: var(--text-color);
-  font-size: 15px;
-}
+  /* decorative floating background */
+  .hero::before{
+    content:"";
+    position:absolute; inset:0; z-index:0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.10), transparent 25%),
+      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08), transparent 28%);
+    pointer-events:none;
+  }
 
-.nav-link a:hover {
-  color: var(--accent);
-}
-
-/* --------------------------- */
-/*        MAIN CONTENT         */
-/* --------------------------- */
-
-.main {
-  margin-left: 240px;
-  width: calc(100% - 240px);
-}
-
-/* --------------------------- */
-/*            HERO             */
-/* --------------------------- */
-
-.hero {
-  background: var(--hero-gradient);
-  padding: 120px 20px 80px;
-  border-radius: 0 0 18px 18px;
-  position: relative;
-  text-align: center;
-  min-height: 420px;
-  overflow: visible !important; /* ← FIX para que NO corte la foto */
-}
-
-.hero-photo-container {
-  position: absolute;
-  top: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 160px;
-  height: 160px;
-  background: var(--content-bg);
-  border-radius: 50%;
-  padding: 6px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 8px 28px rgba(0,0,0,.4);
-}
-
-.hero-photo-container img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: top; /* ← centra correctamente */
-}
-
-.hero h1 {
-  margin-top: 100px;
-  font-size: 32px;
-  font-weight: 700;
-}
-
-.hero h2 {
-  margin-top: 10px;
-  font-size: 16px;
-  opacity: .9;
-}
-
-/* --------------------------- */
-/*           CONTENT           */
-/* --------------------------- */
-
-.section {
-  background: var(--card-bg);
-  margin: 25px auto;
-  padding: 25px;
-  width: 90%;
-  border-radius: 12px;
-}
-
-.section h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: var(--accent);
-}
-
-ul {
-  margin: 0;
-  padding-left: 20px;
-}
-
-.contact a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.download-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 18px;
-  background: var(--accent);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 8px;
-}
-
-/* --------------------------- */
-/*         MASONRY GRID        */
-/* --------------------------- */
-
-.masonry {
-  column-count: 3;
-  column-gap: 15px;
-}
-
-.masonry img {
-  width: 100%;
-  margin-bottom: 15px;
-  border-radius: 10px;
-}
-
-/* --------------------------- */
-/*        RESPONSIVE           */
-/* --------------------------- */
-
-@media (max-width: 768px) {
-  .sidebar {
+  /* photo wrapper (keeps image safe and centered) */
+  .hero .photo-wrap{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    top: -82px;             /* tuned to avoid cut */
     width: 180px;
+    height: 180px;
+    padding:6px;
+    border-radius:50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+    box-shadow: 0 20px 50px rgba(2,6,23,0.35);
+    z-index:12;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
-  .main {
-    margin-left: 180px;
+
+  .hero .photo-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;       /* use cover for professional crop but object-position center */
+    object-position:center;
+    border-radius:50%;
+    display:block;
   }
-  .hero {
-    padding-top: 140px;
-    min-height: 380px;
+
+  .hero h1{ margin-top: 110px; text-align:center; font-size:2.25rem; z-index:10; position:relative }
+  .hero p{ text-align:center; margin-top:10px; opacity:0.95; z-index:10; position:relative }
+
+  @media(max-width:900px){
+    .hero{ padding-top:100px }
+    .hero .photo-wrap{ width:150px; height:150px; top:-70px }
+    .hero h1{ margin-top:90px; font-size:1.6rem }
   }
-  .hero-photo-container {
-    width: 135px;
-    height: 135px;
-    top: -70px;
+  @media(max-width:480px){
+    .hero{ padding-top:90px }
+    .hero .photo-wrap{ width:120px; height:120px; top:-58px }
+    .hero h1{ margin-top:78px; font-size:1.3rem }
   }
-  .masonry {
-    column-count: 1;
+
+  /* ---------- SECTIONS ---------- */
+  .card{ background: var(--card-light); border-radius:12px; padding:18px; margin-bottom:20px; box-shadow: 0 8px 22px rgba(0,0,0,0.06) }
+  body.dark .card{ background: var(--card-dark) }
+
+  h2.section-title{ color: var(--verde-oscuro); margin:0 0 12px; }
+
+  .two-col{ display:grid; grid-template-columns: 1fr 320px; gap:18px }
+  @media(max-width:900px){ .two-col{ grid-template-columns:1fr } }
+
+  ul{ padding-left:18px; margin:0 }
+  li{ margin-bottom:8px; color: inherit }
+
+  /* ---------- MASONRY (JS-driven columns) ---------- */
+  #masonry{ display:flex; gap:18px }
+  .mason-col{ flex:1; display:flex; flex-direction:column; gap:18px }
+  .p-card{
+    border-radius:12px; padding:16px; box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    background: var(--card-light); border-left:6px solid var(--verde);
   }
-}
+  body.dark .p-card{ background: var(--card-dark) }
+
+  .badge{ display:inline-block; background:var(--verde); color:white; padding:4px 10px; border-radius:8px; font-size:.78rem; margin-right:6px; margin-top:8px }
+
+  /* ---------- FOOTER ---------- */
+  footer{ text-align:center; padding:28px; color: var(--muted-light) }
+  body.dark footer{ color: var(--muted-dark) }
+
+  /* small helpers */
+  .muted{ color: var(--muted-light) } body.dark .muted{ color:var(--muted-dark) }
+
+  /* ---------- focus / accessibility ---------- */
+  a:focus, button:focus{ outline:3px solid rgba(0,168,107,0.14); outline-offset:3px; border-radius:8px }
 
 </style>
-
 </head>
+
 <body>
 
-<!-- =======================
-          SIDEBAR
-======================= -->
-<div class="sidebar">
-  <img src="foto_edison_tobar.png" alt="Foto">
-  <h2>Edison J. Tobar</h2>
-  <p>Ciberseguridad • Automatización</p>
+  <!-- SIDEBAR -->
+  <aside class="sidebar" aria-label="Menú">
+    <a class="brand" href="#">
+      <img src="foto_edison_tobar.png" alt="Foto Edison">
+      <div>
+        <div class="name">Edison Javier Tobar</div>
+        <div class="role muted">Ciberseguridad • Automatización</div>
+      </div>
+    </a>
 
-  <div class="nav-link">
-    <a href="#perfil">Perfil</a>
-    <a href="#formacion">Formación</a>
-    <a href="#certificaciones">Certificaciones</a>
-    <a href="#habilidades">Habilidades</a>
-    <a href="#experiencia">Experiencia</a>
-    <a href="#portafolio">Portafolio</a>
-    <a href="#contacto">Contacto</a>
-  </div>
-</div>
+    <nav class="side-nav" aria-label="Secciones">
+      <a href="#perfil">Perfil</a>
+      <a href="#formacion">Formación</a>
+      <a href="#certificaciones">Certificaciones</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
 
-<!-- =======================
-          MAIN
-======================= -->
-<div class="main">
+    <a class="cv-btn" href="CV_Edison_Tobar_2025.pdf" target="_blank" rel="noopener">Descargar CV</a>
+  </aside>
 
-<!-- =======================
-          HERO
-======================= -->
-<div class="hero">
-  <div class="hero-photo-container">
-    <img src="foto_edison_tobar.png" alt="Edison">
-  </div>
-
-  <h1>Edison Javier Tobar Roblero</h1>
-  <h2>MSc. Ciberseguridad • Power Platform • Automatización • Infraestructura IT</h2>
-
-  <!-- Toggle modo oscuro -->
-  <button onclick="toggleMode()" style="
-    position:absolute; top:20px; right:20px; 
-    background:#fff; border:none; padding:10px; border-radius:50%;
-    cursor:pointer;">🌓</button>
-</div>
-
-<!-- =======================
-       SECCIÓN PERFIL
-======================= -->
-<div class="section" id="perfil">
-  <h3>Perfil Profesional</h3>
-  <p>
-    Profesional especializado en ciberseguridad, automatización de procesos y plataformas tecnológicas. 
-    Experiencia en Power Platform, análisis de datos, infraestructura IT, telefonía IP y administración 
-    de servidores. Enfocado en seguridad corporativa y optimización de entornos tecnológicos.
-  </p>
-</div>
-
-<!-- =======================
-       FORMACIÓN
-======================= -->
-<div class="section" id="formacion">
-  <h3>Formación Académica</h3>
-  <ul>
-    <li>Maestría en Ciberseguridad — U. Hemisferios - IMF</li>
-    <li>Ingeniería en Informática — UTE</li>
-    <li>Tecnología en Análisis de Sistemas — EPN</li>
-  </ul>
-</div>
-
-<!-- =======================
-     CERTIFICACIONES
-======================= -->
-<div class="section" id="certificaciones">
-  <h3>Certificaciones Destacadas</h3>
-  <ul>
-    <li>EHCA — Ethical Hacking Certified Associate</li>
-    <li>CAPC — Cybersecurity Awareness Certification</li>
-    <li>CEHPC — Ethical Hacking Professional</li>
-    <li>Power Platform Consultant — AKROSS</li>
-    <li>IA aplicada a la Docencia — UDLA</li>
-  </ul>
-</div>
-
-<!-- =======================
-     HABILIDADES
-======================= -->
-<div class="section" id="habilidades">
-  <h3>Habilidades Técnicas</h3>
-  <ul>
-    <li>Power Apps • Power Automate • Power BI</li>
-    <li>Python • Automatización</li>
-    <li>Ciberseguridad • Hacking Ético</li>
-    <li>Servidores Windows/Linux</li>
-    <li>Telefonía IP</li>
-  </ul>
-</div>
-
-<!-- =======================
-     EXPERIENCIA
-======================= -->
-<div class="section" id="experiencia">
-  <h3>Experiencia Profesional</h3>
-  <p>Añadirás aquí tus experiencias laborales.</p>
-</div>
-
-<!-- =======================
-     PORTAFOLIO
-======================= -->
-<div class="section" id="portafolio">
-  <h3>Portafolio</h3>
-
-  <div class="masonry">
-    <img src="assets/proyecto1.png">
-    <img src="assets/proyecto2.png">
-    <img src="assets/proyecto3.png">
-    <img src="assets/proyecto4.png">
+  <!-- TOPNAV (mobile) -->
+  <div class="topnav" role="navigation" aria-label="Navegación móvil" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="foto_edison_tobar.png" alt="" style="width:38px;height:38px;border-radius:8px;object-fit:cover">
+      <strong>Edison Tobar</strong>
+    </div>
+    <div>
+      <button id="mobileDark" aria-label="Alternar tema" style="background:none;border:none;font-size:20px;cursor:pointer">🌓</button>
+    </div>
   </div>
 
-</div>
+  <!-- MAIN -->
+  <main class="content" id="mainContent">
 
-<!-- =======================
-     CONTACTO
-======================= -->
-<div class="section contact" id="contacto">
-  <h3>Contacto</h3>
-  <p>📧 etobarroblero@gmail.com</p>
-  <p>📱 0999592340</p>
-  <p><a href="https://linkedin.com/in/edisontobar" target="_blank">LinkedIn</a></p>
+    <!-- HERO PREMIUM -->
+    <section class="hero" role="banner" aria-label="Encabezado">
+      <!-- dark toggle (desktop) -->
+      <button id="darkToggle" aria-label="Alternar tema" class="dark-toggle" style="position:absolute;right:18px;top:18px;background:rgba(255,255,255,0.9);border:0;padding:8px;border-radius:10px;cursor:pointer;z-index:15">🌓</button>
 
-  <a href="CV_Edison_Tobar_2025.pdf" class="download-btn" download>Descargar CV</a>
-</div>
+      <div class="photo-wrap" aria-hidden="true">
+        <img src="foto_edison_tobar.png" alt="Edison Tobar">
+      </div>
 
-</div>
+      <h1>Edison Javier Tobar Roblero</h1>
+      <p>MSc. Ciberseguridad · Power Platform · Automatización · Infraestructura IT</p>
+    </section>
+
+    <!-- PERFIL -->
+    <section id="perfil" class="card" aria-labelledby="perfil-title">
+      <h2 id="perfil-title" class="section-title">Perfil Profesional</h2>
+      <p>
+        Profesional especializado en ciberseguridad, automatización de procesos y plataformas tecnológicas.
+        Experiencia en Power Platform, análisis de datos, infraestructura IT, telefonía IP, herramientas de hacking ético
+        y gestión de servidores. Enfocado en proteger activos digitales y optimizar entornos corporativos mediante soluciones seguras y eficientes.
+      </p>
+    </section>
+
+    <!-- FORMACIÓN + CONTACT -->
+    <section class="two-col" style="margin-bottom:18px;">
+
+      <div class="card" id="formacion" aria-labelledby="formacion-title">
+        <h2 id="formacion-title" class="section-title">Formación Académica</h2>
+        <ul>
+          <li>Maestría en Ciberseguridad — U. Hemisferios - IMF</li>
+          <li>Ingeniería en Informática y Ciencias de la Computación — UTE</li>
+          <li>Tecnólogo en Análisis de Sistemas — EPN</li>
+        </ul>
+
+        <h2 style="margin-top:18px" id="certificaciones" class="section-title">Certificaciones Destacadas</h2>
+        <ul>
+          <li>EHCA — Ethical Hacking Certified Associate</li>
+          <li>CAPC — Cybersecurity Awareness Professional Certification</li>
+          <li>CEHPC — Ethical Hacking Professional Certification</li>
+          <li>Power Platform Consultant — AKROSS</li>
+          <li>IA Aplicada a la Docencia — UDLA</li>
+        </ul>
+      </div>
+
+      <aside class="card" aria-labelledby="contacto-title" id="contacto">
+        <h2 id="contacto-title" class="section-title">Contacto</h2>
+        <p class="muted">📧 <a href="mailto:etobarroblero@gmail.com">etobarroblero@gmail.com</a></p>
+        <p class="muted">📱 0999592340</p>
+        <p class="muted">🔗 <a href="https://www.linkedin.com/in/edisontobar" target="_blank" rel="noopener">LinkedIn /edisontobar</a></p>
+        <a class="cv-btn" href="CV_Edison_Tobar_2025.pdf" target="_blank" rel="noopener">Descargar CV</a>
+      </aside>
+
+    </section>
+
+    <!-- HABILIDADES -->
+    <section id="habilidades" class="card">
+      <h2 class="section-title">Habilidades Técnicas</h2>
+      <ul>
+        <li>Power Apps, Power Automate, Power BI</li>
+        <li>Lenguajes: Python, C++, Visual Basic</li>
+        <li>Bases de Datos: Oracle, SQL Server, DB2</li>
+        <li>Seguridad: Metasploit, Nmap, Nessus, Hydra, Sqlmap</li>
+        <li>Servidores Windows / Linux</li>
+      </ul>
+    </section>
+
+    <!-- EXPERIENCIA -->
+    <section id="experiencia" class="card">
+      <h2 class="section-title">Experiencia Profesional</h2>
+      <ul>
+        <li><strong>Información Tecnológica del Ecuador</strong> (6 años) — Administración de servidores, telefonía IP, ERP, soporte técnico y capacitación.</li>
+        <li><strong>Servicios Cybercell</strong> (2.5 años) — Redes, seguridad informática, soporte y administración de bases de datos.</li>
+      </ul>
+    </section>
+
+    <!-- PORTAFOLIO -->
+    <section id="portafolio" class="card" aria-labelledby="portafolio-title">
+      <h2 id="portafolio-title" class="section-title">Portafolio de Proyectos</h2>
+      <p class="muted">Haz clic en un proyecto para ver más detalles.</p>
+
+      <div id="masonry">
+        <!-- Project 1 -->
+        <article class="masonry-item">
+          <a href="proyecto-tickets.html" class="p-card" title="Sistema de Tickets">
+            <h3>🔐 Sistema de Tickets</h3>
+            <p>Desarrollo e implementación con Power Platform para gestión de incidencias.</p>
+            <div>
+              <span class="badge">Power Apps</span>
+              <span class="badge">ISO 27001</span>
+            </div>
+          </a>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="masonry-item">
+          <a href="proyecto-automatizacion.html" class="p-card" title="Automatización">
+            <h3>⚡ Automatización con Power Platform</h3>
+            <p>Automatización de procesos críticos y dashboards corporativos.</p>
+            <div>
+              <span class="badge">Power Automate</span>
+              <span class="badge">Power BI</span>
+            </div>
+          </a>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="masonry-item">
+          <a href="proyecto-cableado.html" class="p-card" title="Cableado Estructurado">
+            <h3>🛡 Cableado Estructurado</h3>
+            <p>Coordinación e implementación de cableado para planta productiva.</p>
+            <div>
+              <span class="badge">Infraestructura</span>
+            </div>
+          </a>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="masonry-item">
+          <a href="proyecto-firmas.html" class="p-card" title="Firmas Electrónicas">
+            <h3>📄 Flujos con Firmas Electrónicas</h3>
+            <p>Implementación de flujos con firma electrónica y control documental.</p>
+            <div>
+              <span class="badge">SQL</span>
+              <span class="badge">Oracle</span>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Edison Tobar — Portafolio Profesional
+    </footer>
+
+  </main>
 
 <script>
-function toggleMode() {
-  document.body.classList.toggle("light");
-}
-</script>
+/* ======================
+   THEME (dark/light)
+   - stored in localStorage
+====================== */
+const darkToggle = document.getElementById('darkToggle');
+const mobileDark = document.getElementById('mobileDark');
 
+function applyTheme(theme){
+  if(theme === 'dark'){
+    document.body.classList.add('dark');
+    localStorage.setItem('theme','dark');
+  } else {
+    document.body.classList.remove('dark');
+    localStorage.setItem('theme','light');
+  }
+}
+
+/* load saved or system */
+const saved = localStorage.getItem('theme');
+if(saved) applyTheme(saved);
+else {
+  // default to dark for this design
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(prefersDark ? 'dark' : 'light');
+}
+
+darkToggle?.addEventListener('click', ()=>{
+  applyTheme(document.body.classList.contains('dark') ? 'light' : 'dark');
+});
+mobileDark?.addEventListener('click', ()=>{
+  applyTheme(document.body.classList.contains('dark') ? 'light' : 'dark');
+});
+
+/* ======================
+   MASONRY (simple, robust)
+====================== */
+function buildMasonry(){
+  const container = document.getElementById('masonry');
+  if(!container) return;
+  const items = Array.from(container.querySelectorAll('.masonry-item'));
+  const width = window.innerWidth;
+  let cols = width < 700 ? 1 : width < 1000 ? 2 : 3;
+
+  // prepare columns
+  container.innerHTML = '';
+  const columns = [];
+  for(let i=0;i<cols;i++){
+    const col = document.createElement('div');
+    col.className = 'mason-col';
+    container.appendChild(col);
+    columns.push(col);
+  }
+
+  items.forEach((it, idx)=>{
+    columns[idx % cols].appendChild(it);
+  });
+}
+
+/* initial + on resize */
+window.addEventListener('load', buildMasonry);
+window.addEventListener('resize', ()=> { window.requestAnimationFrame(buildMasonry) });
+
+</script>
 </body>
 </html>
